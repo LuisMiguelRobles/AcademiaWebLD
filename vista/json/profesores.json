@@ -1,0 +1,14 @@
+[
+    {
+        "nombre" : "Cristian",
+        "apellido" : "Echeverri",
+        "cedula" :  "1054926307",
+        "fechaNacimiento" : "14/04/1999",
+        "direccion" : "Vereda Miravalle",
+        "telefono" : "3218893338",
+        "correo" : "cristiancamilo14041999@gmail.com",
+        "categoria" : "Categoría 1",
+        "profesion" : "estudiante",
+        "especialidad" : "sistemas"
+    }
+]
