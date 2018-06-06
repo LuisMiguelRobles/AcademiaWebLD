@@ -16,7 +16,12 @@ $(function () {
         obtenerPorCedula();
         console.log($("#buscarEstudiante").val());
         $("#buscarEstudianteEditar").val("");
-        $("#consultaEstudiante").show();
+        
+    });
+
+    $("#btnAtrasEstudiante").click(function(){
+        obtenerEstudiantes();
+        $("#btnAtrasEstudiante").fadeOut();
     });
 
 
@@ -190,87 +195,24 @@ function editarEstudiante() {
 
 
 
-/*function obtenerPorDocumento(documento) {
-
-    $.ajax({
-
-        "url": url,
-        "type": "GET",
-        "data": {
-            clase: "Estudiante",
-            oper: "select1",
-            documentoestudiante: documento
-
-        },
-        "dataType": "JSON"
-    }).done(function (value) {
-        let tablaEstudiantes = "";
-
-        tablaEstudiantes = `<table class="table table-bordered ">
-                    <thead class="thead-dark">
-                        <tr>
-                            <td>Documento</td>
-                            <td>Nombre</td>
-                            <td>Apellido</td>
-                            <td>Fecha de Nacimiento</td>
-                            <td>Dirección</td>
-                            <td>Telefono</td>
-                            <td>Correo</td>
-                            <td>Opciones</td>
-                        </tr>
-                    </thead>`;
-
-
-        tablaEstudiantes +=
-            `<tr>
-                    <td>${value.documentoestudiante}</td>
-                    <td>${value.nombreestudiante}</td>
-                    <td>${value.apellidoestudiante}</td>
-                    <td>${value.fechanacimiento}</td>
-                    <td>${value.direccion}</td>
-                    <td>${value.telefono}</td>
-                    <td>${value.correo}</td>
-                    <td>
-                        <div class="btn-group">
-                            <button class="btn btn-info" data-toggle="modal" data-target="#modalEstudiantesEditar" onclick="modalEditarEstudiante(${value.documentoestudiante})">Editar</button>
-                            <button class="btn btn-danger delete" id="delete" onclick="eliminarEstudiante(${value.documentoestudiante})">Eliminar</button>
-                        </div>     
-                    </td>
-                </tr>`;
-
-
-        tablaEstudiantes += `</table><br><button class="btn btn-default" onclick="atras()">Atras</button>`;
-        $("#renderizarEstudiante").hide();
-
-        $("#consultaEstudiante").html(tablaEstudiantes);
-
-
-        $("#renderizarEstudiante").html(tablaEstudiantes);
-
-
-
-
-
-
-    });
-}*/
-
 
 function obtenerPorCedula() {
-    alert("hola")
-
+    
     $.ajax({
 
-        "url": url,
+        "url": urlEstudiantes,
         "type": "GET",
         "data": {
             clase: "Estudiante",
             oper: "select1",
-            documentoestudiante: $("#buscarEstudiante").val()
+            documentoEstudiante: $("#buscarEstudiante").val()
 
         },
         "dataType": "JSON"
-    }).done(function (data) {
+    })
+    /*.done(function (data) {
+
+        estudiantes=JSON.stringify(data);
 
         let html;
 
@@ -292,8 +234,8 @@ function obtenerPorCedula() {
 
             html +=
                 `<tr>
-                <td>${data.documentoestudiante}</td>
-                <td>${data.nombreestudiante}</td>
+                <td>${estudiantes.documentoestudiante}</td>
+                <td>${estudiantes.nombreestudiante}</td>
                 <td>${data.apellidoestudiante}</td>
                 <td>${data.fechanacimiento}</td>
                 <td>${data.direccion}</td>
@@ -317,10 +259,18 @@ function obtenerPorCedula() {
 
         }
         console.log(data);
+    })*/
+    .done((data)=>{
+        console.log(data);
+        if(data){
+            estudiantes=data;
+            renderizar(estudiantes);
+            $("#btnAtrasEstudiante").fadeIn();
+        }else{
+            alert("No se encontro ningun registro");
+        }
+
+
     });
 }
 
-function atras() {
-    $("#renderizarEstudiante").show();
-    $("#consultaEstudiante").hide();
-}
