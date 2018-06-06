@@ -64,9 +64,8 @@
             <div class="my-auto container">
                 <h1 class="my-name col-12">Academia automovilistica lord driver</h1>
 
-                <div class="datos-personales">
-                    Lorem ipsum dolor sit amet consectetur, adipisicing elit. Quasi pariatur voluptatibus, debitis mollitia reiciendis ad voluptates
-                    omnis odit quaerat cupiditate quae, voluptate architecto! Delectus magnam fuga voluptas ad, quia reiciendis.
+                <div class="">
+                    
                 </div>
                 <ul class="list-inline list-social-icons mb-0">
                     <li class="list-inline-item">
@@ -117,16 +116,16 @@
                                 <form action="" id="formularioAgregarEstudiante">
                                     <div class="form-group">
                                         <label for="nombre">Documento</label>
-                                        <input type="text" class="form-control" id="documentoEstudiante" placeholder="Ingrese su Documento" required>
+                                        <input type="text" class="form-control" id="documentoEstudiante" placeholder="Ingrese su Documento" minlength="8" required>
 
                                     </div>
                                     <div class="form-group">
                                         <label for="apellido">Nombre</label>
-                                        <input type="text" class="form-control" id="nombreEstudiante" placeholder="Ingrese su Nombre" required>
+                                        <input type="text" class="form-control" id="nombreEstudiante" placeholder="Ingrese su Nombre"  minlength="3" required>
                                     </div>
                                     <div class="form-group">
                                         <label for="fechaNacimiento">Apellido</label>
-                                        <input type="text" class="form-control" id="apellidoEstudiante" placeholder="Ingrese su apellido" required>
+                                        <input type="text" class="form-control" id="apellidoEstudiante" placeholder="Ingrese su apellido" minlength="4" required>
                                     </div>
 
                                     <div class="form-group">
@@ -140,7 +139,7 @@
 
                                     <div class="form-group">
                                         <label for="fechaNacimiento">Telefono</label>
-                                        <input type="number" class="form-control" id="telefono" placeholder="Ingrese su Telefono" required>
+                                        <input type="number" class="form-control" id="telefono" placeholder="Ingrese su Telefono" minlength="8" required>
                                     </div>
 
                                     <div class="form-group">
@@ -252,13 +251,37 @@
             <!-- Button trigger modal -->
             <nav class="navbar navbar-light bg-light">
                 <div class="form-inline">
-                    <input class="form-control mr-sm-2" type="search" placeholder="Buscar por cedula" aria-label="Search" id="buscarDocente">
+                    <input class="form-control mr-sm-2" type="search" placeholder="Buscar por cedula" aria-label="Search" id="buscarCedulaDocente">
                     <button class="btn btn-outline-success my-2 my-sm-0" id="btnBuscarDocente">Buscar</button>
                 </div>
                 <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modalProfesores">
                     Agregar
                 </button>
             </nav>
+
+             <!-- Validar Eliminar Profesor -->
+             <div class="modal fade" id="validarEliminarProfesor" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="exampleModalLabel">Confirmar la Eliminación</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            <p class="text-center">¿Está seguro de eliminar este docente?
+                                <span id="cedulaProfesorAEliminar" hidden></span>
+                            </p>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-success" data-dismiss="modal">NO</button>
+                            <button type="button" class="btn btn-danger" data-dismiss="modal" onclick="confirmarEliminarProfesor()">SI</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
 
 
             <div class="form-group">
@@ -321,6 +344,12 @@
 
             <div id="tablaProfesor">
 
+            </div>
+
+            <div class="btn-group">
+                <button id="btnAtrasProfesor" class="btn btn-secondary">
+                    <i class="fa fa-backward"></i> Volver Atras
+                </button>
             </div>
 
             <div class="form-group">
@@ -781,8 +810,13 @@
         </section>
         <!-- FIN SECCION DE CLASES -->
 
+<<<<<<< HEAD
          <!-- SECCION ADMINISTRATIVOS -->
          <section class="resume-section p-3 p-lg-5 d-flex flex-column" id="users">
+=======
+        <!-- SECCION ADMINISTRATIVOS -->
+        <section class="resume-section p-3 p-lg-5 d-flex flex-column" id="users">
+>>>>>>> 04958437844038d25fa897a8107d1479d3c0fbab
             <div class="row">
                 <div class="col-md-9">
                     <h2 class="mb-5 my-titles">Administrativos</h2>
@@ -796,8 +830,8 @@
             </div>
 
             <div class="form-group">
-
                 <!-- Modal Agregar Administrativo -->
+
                 <div class="modal fade" id="modalAdministrativos" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                     <div class="modal-dialog" role="document">
                         <div class="modal-content">
@@ -826,6 +860,7 @@
                                 <div class="form-group">
                                     <label for="password">Contraseña</label>
                                     <input type="password" class="form-control" id="password" placeholder="Ingrese su contraseña" required>
+<<<<<<< HEAD
                                 </div>
                             </div>
                             <div class="modal-footer">
@@ -850,11 +885,51 @@
                                     <label for="cedulaadministrativo">Documento</label>
                                     <input type="text" class="form-control" id="cedulaadministrativoEditar" placeholder="Ingrese su cedula" required>
 
+=======
+>>>>>>> 04958437844038d25fa897a8107d1479d3c0fbab
+                                </div>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+                                <button type="button" class="btn btn-primary" id="enviar">Guardar</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Modal -->
+                <div class="modal fade" id="modalAdministrativosEditar" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                    <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                            <div class="modal-body">
+                                <div class="form-group">
+<<<<<<< HEAD
+                                    <label for="emailadministrativo">Correo</label>
+                                    <input type="text" class="form-control" id="emailadministrativoEditar" placeholder="Ingrese su correo" required>
+
+                                </div>
+                                <div class="form-group">
+                                    <label for="date">Fecha Nacimiento</label>
+                                    <input type="date" class="form-control" id="dateEditar" placeholder="Ingrese su fecha de nacimiento" required>
+=======
+                                    <label for="cedulaadministrativo">Documento</label>
+                                    <input type="text" class="form-control" id="cedulaadministrativoEditar" placeholder="Ingrese su cedula" required>
+
                                 </div>
                                 <div class="form-group">
                                     <label for="emailadministrativo">Correo</label>
                                     <input type="text" class="form-control" id="emailadministrativoEditar" placeholder="Ingrese su correo" required>
+>>>>>>> 04958437844038d25fa897a8107d1479d3c0fbab
 
+                                </div>                                
+                                <div class="form-group">
+                                    <label for="password">Contraseña</label>
+                                    <input type="password" class="form-control" id="passwordEditar" placeholder="Ingrese su contraseña" required>
                                 </div>
                                 <div class="form-group">
                                     <label for="date">Fecha Nacimiento</label>
@@ -898,6 +973,10 @@
 
 <script src="includes/jquery-easing/jquery.easing.min.js"></script>
 <script src="vista/js/navbar.js"></script>
+<<<<<<< HEAD
+
+=======
+>>>>>>> 2cc75af3fdae7fe29d4ef2abb439c3e1eaadfa7b
 <script src="vista/js/profesores.js"></script>
 <script src="vista/js/estudiante.js"></script>
 <script src="vista/js/productos.js"></script>

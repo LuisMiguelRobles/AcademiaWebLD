@@ -11,7 +11,16 @@ $(function () {
     $('#editarProfesor').click(function () {
         editarDocente();
     });
-   
+
+    $('#btnBuscarDocente').click(function(){
+        buscarProfesor();
+        
+    });
+
+    $('#btnAtrasProfesor').click(function(){
+        obtenerProfesores();
+        $('#btnAtrasProfesor').fadeOut();
+    })
 });
 
 function obtenerProfesores() {
@@ -76,7 +85,7 @@ function renderizarTablaProfesores(data) {
                 <td>
                     <div class="btn-group">
                         <button class="btn btn-info" data-toggle="modal" data-target="#modalProfesoresEditar" onclick="llenarCamposEditarProfesores(${value.cedulaprofesor})">Editar</button>
-                        <button class="btn btn-danger delete" id="delete" onclick="eliminar(${value.cedulaprofesor})">Eliminar</button>
+                        <button class="btn btn-danger delete" id="delete" data-toggle="modal" data-target="#validarEliminarProfesor" onclick="eliminarProfesor(${value.cedulaprofesor})">Eliminar</button>
                     </div>
                 </td>
             </tr>`;
@@ -122,7 +131,7 @@ let llenarCamposEditarProfesores = (cedulaAEditar) => {
             $('#cedulaProfesorEditar').val(profesor.cedulaprofesor);
             $('#nombreProfesorEditar').val(profesor.nombreprofesor);
             $('#apellidoProfesorEditar').val(profesor.apellidoprofesor);
-            $('#fechaNacimientoProfesorEditar').val(profesor.cedulaprofesor);
+            $('#fechaNacimientoProfesorEditar').val(profesor.fechanacimiento);
             $('#direccionProfesorEditar').val(profesor.direccionprofesor);
             $('#telefonoProfesorEditar').val(profesor.telefonoprofesor);
             $('#correoProfesorEditar').val(profesor.correoprofesor);
@@ -142,39 +151,84 @@ function editarDocente() {
         "data": {
             clase :'Profesor',
             oper: 'edit',
-            cedulaprofesor : $('#cedulaProfesorEditar').val(),
             nombreprofesor  : $('#nombreProfesorEditar').val(),
             apellidoprofesor : $('#apellidoProfesorEditar').val(),
             fechanacimiento : $('#fechaNacimientoProfesorEditar').val(),
             direccionprofesor : $('#direccionProfesorEditar').val(),
             telefonoprofesor : $('#telefonoProfesorEditar').val(),
             correoprofesor : $('#correoProfesorEditar').val(),
-            profesionprofesor : $('#profesionProfesorEditar').val()
+            profesionprofesor : $('#profesionProfesorEditar').val(),
+            cedulaprofesor : $('#cedulaProfesorEditar').val()
         },
         "dataType": "JSON"
     }).done(function(data){
 
-        alert("entra")
         console.log(data);
         obtenerProfesores();
         
     }).fail(function(error){
-        alert("no entra :(");
+        alert("Hay un error");
     })
 }
 
 
-// function eliminar(cedula) {
-//     let index;
+function eliminarProfesor(cedulaProfesorEliminar) {
 
-//     for (let value of profesores) {
-//         if (value.cedula == cedula) {
-//             index = profesores.indexOf(value);
-//             profesores.splice(index, 1);
-//             console.log(profesores);
+    $("#cedulaProfesorAEliminar").html(cedulaProfesorEliminar);
 
-//             renderizar(profesores);
+}
 
-//         }
-//     }
-// }
+function confirmarEliminarProfesor(params) {
+    let docenteEliminar = parseInt($('#cedulaProfesorAEliminar').text());
+    $.ajax({
+        "url":"controlador/fachada.php",
+        "type": "POST",
+        "data": {
+            clase: "Profesor",
+            oper: "delete",
+            cedulaprofesor: docenteEliminar
+        }
+
+    }).done((data) => {
+
+        obtenerProfesores();
+
+    });
+}
+
+function buscarProfesor() {
+    let buscarProfesor = $('#buscarCedulaDocente').val();
+
+    console.log(buscarProfesor);
+
+    if (buscarProfesor != '') {
+        $.ajax({
+
+            "url": "controlador/fachada.php",
+            "type": "GET",
+            "data": {
+                clase :'Profesor',
+                oper: 'select1',
+                cedulaprofesor : buscarProfesor
+            },
+            "dataType": "JSON"
+    
+        }).done(function (data) {
+            console.log(data);
+            if (data) {
+                profesores = data;
+                
+                renderizarTablaProfesores(data);
+            } else {
+                $('#tablaProfesor').html('<div class="alert alert-danger">Nada para Mostrar</div>');
+            }
+            $('#btnAtrasProfesor').fadeIn();
+    
+        }).fail(function (error) {
+            alert("No se recibio respuesta del Servidor..." + error);
+            console.log(error);
+        }); 
+    } else {
+        alert("No se ha ingresado la cedula");
+    }
+}
