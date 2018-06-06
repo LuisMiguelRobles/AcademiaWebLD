@@ -5,25 +5,14 @@ $(function () {
 
     obtenerAdministrativos();
 
-<<<<<<< HEAD
-    $("#enviarAdministrativo").click(function () {
-        agregarAdministrativos();
-    })
-
-    $("#editarAdministrativos").click(function() { 
-        editarAdministrativos();
-    })
-
-
-  
-=======
     $("#agregarAdministrativos").click(function () {
         agregarAdministrativos();
-    })
+    });
 
-
->>>>>>> 04958437844038d25fa897a8107d1479d3c0fbab
-
+    $("#editarAdministrativos").click(function () {
+        editarAdministrativos();
+    });
+    
 });
 
 function obtenerAdministrativos() {
@@ -40,17 +29,14 @@ function obtenerAdministrativos() {
     }).done(function (data) {
 
         if (data) {
-<<<<<<< HEAD
-            administrativos =data;
-=======
->>>>>>> 04958437844038d25fa897a8107d1479d3c0fbab
+            administrativos = data;
             //console.log(data);
             renderizarAdministrativos(data);
         }
 
 
     }).always(function (data) {
-        //console.log(data);
+        console.log(data);
     });
 
 }
@@ -62,9 +48,10 @@ function renderizarAdministrativos(data) {
     tablaAdministrativos = `<table class="table table-bordered ">
                 <thead class="thead-dark">
                     <tr>
-                        <td>Cedula</td>
-                        <td>Email</td>
-                        <td>Fecha</td>
+                        <th>Cedula</th>
+                        <th>Email</th>
+                        <th>Fecha</th>
+                        <th>Acciones</th>
                     </tr>
                 </thead>`;
 
@@ -76,12 +63,8 @@ function renderizarAdministrativos(data) {
                 <td>${value.date}</td>
                 <td>
                     <div class="btn-group">
-<<<<<<< HEAD
                         <button class="btn btn-info" data-toggle="modal" data-target="#modalAdministrativosEditar" onclick="modalEditarAdministrativos(${value.cedulaadministrativo})">Editar</button>
-=======
-                        <button class="btn btn-info" data-toggle="modal" data-target="#modalEditar" onclick="modalEditarAdministrativos(${value.id})">Editar</button>
->>>>>>> 04958437844038d25fa897a8107d1479d3c0fbab
-                        <button class="btn btn-danger delete" id="delete" onclick="eliminarAdministrativos(${value.cedulaadministrativo})">Eliminar</button>
+                        <button class="btn btn-danger delete" id="delete" onclick="eliminarAdministrativos(${value.cedulaadministrativo})"  data-toggle="modal" data-target="#validarEliminarAdministrativo">Eliminar</button>
                     </div>     
                 </td>
             </tr>`;
@@ -117,7 +100,51 @@ function agregarAdministrativos() {
 
 }
 
-<<<<<<< HEAD
+/**
+ * elimina los datos
+ */
+function eliminarAdministrativos(cedulaadministrativo){
+
+    $('#myIDAdministrativo').html(cedulaadministrativo);
+
+}
+
+let confirmarEliminarAdministrativo = () => {
+
+    const idAEliminar = $('#myIDAdministrativo').text();
+
+    $.ajax({
+        "url": urlAdministrativos,
+        "type": "POST",
+        "data": {
+            clase: 'administrativos',
+            oper: 'delete',
+            cedulaadministrativo: idAEliminar
+        }
+    }).done(function (data) {
+        obtenerAdministrativos();
+    }).fail(function (error) {
+        alert("No hubo respuesta del Servidor");
+    });
+
+}
+/**
+*edita los datos que ya han sido ingresados
+ */
+function modalEditarAdministrativos(id) {
+    //alert(id);
+    for (let value of administrativos) {
+        if (value.cedulaadministrativo == id) {
+            $("#Id").val(value.cedulaadministrativo);
+            $("#cedulaadministrativoEditar").val(value.cedulaadministrativo);
+            $("#emailadministrativoEditar").val(value.emailadministrativo);
+            $("#dateEditar").val(value.date);
+            $("#passwordEditar").val(value.password);
+        }
+    }
+}
+
+
 function editarAdministrativos() {
 
     $.ajax({
@@ -142,59 +169,4 @@ function editarAdministrativos() {
 
 
 }
-/**
- * elimina los datos
- */
-=======
->>>>>>> 04958437844038d25fa897a8107d1479d3c0fbab
-function eliminarAdministrativos(cedulaadministrativo){
 
-    $.ajax({
-        "url": urlAdministrativos,
-        "type": "POST",
-        "data":{
-            clase:"administrativos",
-            oper:"delete",
-            cedulaadministrativo:cedulaadministrativo
-        }
-
-    }).done((data)=>{
-
-        obtenerAdministrativos();
-
-    });
-
-}
-<<<<<<< HEAD
-/**
-*edita los datos que ya han sido ingresados
- */
-function modalEditarAdministrativos(id) {
-    alert(id);
-    for (let value of administrativos) {
-        if (value.cedulaadministrativo == id) {
-            $("#Id").val(value.cedulaadministrativo);
-=======
-
-
-function modalEditarAdministrativos(id) {
-
-
-    for (let value of users) {
-        if (value.id == id) {
-            $("#Id").val(value.id);
->>>>>>> 04958437844038d25fa897a8107d1479d3c0fbab
-            $("#cedulaadministrativoEditar").val(value.cedulaadministrativo);
-            $("#emailadministrativoEditar").val(value.emailadministrativo);
-            $("#dateEditar").val(value.date);
-            $("#passwordEditar").val(value.password);
-        }
-    }
-<<<<<<< HEAD
-}
-
-
-
-=======
-}
->>>>>>> 04958437844038d25fa897a8107d1479d3c0fbab
