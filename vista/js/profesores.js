@@ -1,9 +1,16 @@
 let profesores = [];
 
-let cedulaEdit;
 $(function () {
 
     obtenerProfesores();
+
+    $('#addProfesor').click(function () {
+        agregarDocente();
+    });
+
+    $('#editarProfesor').click(function () {
+        editarDocente();
+    });
    
 });
 
@@ -23,24 +30,17 @@ function obtenerProfesores() {
         "Async": "false"
 
     }).done(function (data) {
-        profesores = data;
         
         if (data) {
+            profesores = data;
+
             console.log(data);
             renderizarTablaProfesores(data);
         }
+
     }).fail(function (error) {
         alert("No se recibio respuesta del Servidor..." + error);
         console.log(error);
-    });
-
-    $('#addProfesor').click(function () {
-        agregarDocente();
-    });
-
-    $('#editarProfesor').click(function () {
-        editar();
-        //limpiarCampos();
     });
 }
 
@@ -75,8 +75,8 @@ function renderizarTablaProfesores(data) {
                 <td>${value.profesionprofesor}</td>
                 <td>
                     <div class="btn-group">
-                        <button class="btn btn-info" data-toggle="modal" data-target="#modalProfesoresEditar" onclick="llenarCamposEditar(${value.cedula})">Editar</button>
-                        <button class="btn btn-danger delete" id="delete" onclick="eliminar(${value.cedula})">Eliminar</button>
+                        <button class="btn btn-info" data-toggle="modal" data-target="#modalProfesoresEditar" onclick="llenarCamposEditarProfesores(${value.cedulaprofesor})">Editar</button>
+                        <button class="btn btn-danger delete" id="delete" onclick="eliminar(${value.cedulaprofesor})">Eliminar</button>
                     </div>
                 </td>
             </tr>`;
@@ -86,7 +86,7 @@ function renderizarTablaProfesores(data) {
 
 }
 
-let agregarDocente = () => {
+function agregarDocente()  {
     
     $.ajax({
 
@@ -108,55 +108,57 @@ let agregarDocente = () => {
     }).done(function(data){
 
         console.log(data);
-        renderizarTablaProfesores(data);
+        obtenerProfesores();
         
     })
 }
 
+let llenarCamposEditarProfesores = (cedulaAEditar) => {
 
+    for (const profesor of profesores) {
+        if (profesor.cedula == cedulaAEditar) {
+            $('#cedulaProfesorEditar').val(profesor.cedulaprofesor);
+            $('#nombreProfesorEditar').val(profesor.nombreprofesor);
+            $('#apellidoProfesorEditar').val(profesor.apellidoprofesor);
+            $('#fechaNacimientoProfesorEditar').val(profesor.cedulaprofesor);
+            $('#direccionProfesorEditar').val(profesor.direccionprofesor);
+            $('#telefonoProfesorEditar').val(profesor.telefonoprofesor);
+            $('#correoProfesorEditar').val(profesor.correoprofesor);
+            $('#profesionProfesor').val(profesor.profesionprofesor);
 
-
-let llenarCamposEditar = (cedulaAEditar) => {
-
-    cedulaEdit = cedulaAEditar;
-    for (const iterator of profesores) {
-        if (iterator.cedula == cedulaAEditar) {
-            $('#nombreProfesorEditar').val(iterator.nombre);
-            $('#apellidoProfesorEditar').val(iterator.apellido);
-            $('#cedulaProfesorEditar').val(iterator.cedula);
             break;
         }
     }
 }
 
-let editar = () => {
-    let obj = {};
-    obj.nombre = $('#nombreProfesorEditar').val();
-    obj.apellido = $('#apellidoProfesorEditar').val();
-    obj.cedula = $('#cedulaProfesorEditar').val();
+// let editar = () => {
+//     let obj = {};
+//     obj.nombre = $('#nombreProfesorEditar').val();
+//     obj.apellido = $('#apellidoProfesorEditar').val();
+//     obj.cedula = $('#cedulaProfesorEditar').val();
 
-    for (let i = 0; i < profesores.length; i++) {
-        if (profesores[i].cedula == cedulaEdit) {
-            profesores[i] = obj;
-            break;
-        }
-    }
+//     for (let i = 0; i < profesores.length; i++) {
+//         if (profesores[i].cedula == cedulaEdit) {
+//             profesores[i] = obj;
+//             break;
+//         }
+//     }
 
-    renderizar(profesores);
-}
+//     renderizar(profesores);
+// }
 
 
-function eliminar(cedula) {
-    let index;
+// function eliminar(cedula) {
+//     let index;
 
-    for (let value of profesores) {
-        if (value.cedula == cedula) {
-            index = profesores.indexOf(value);
-            profesores.splice(index, 1);
-            console.log(profesores);
+//     for (let value of profesores) {
+//         if (value.cedula == cedula) {
+//             index = profesores.indexOf(value);
+//             profesores.splice(index, 1);
+//             console.log(profesores);
 
-            renderizar(profesores);
+//             renderizar(profesores);
 
-        }
-    }
-}
+//         }
+//     }
+// }
