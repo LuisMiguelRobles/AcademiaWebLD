@@ -114,46 +114,47 @@
                                 </button>
                             </div>
                             <div class="modal-body">
+                                <form action="" id="formularioAgregarEstudiante">
+                                    <div class="form-group">
+                                        <label for="nombre">Documento</label>
+                                        <input type="text" class="form-control" id="documentoEstudiante" placeholder="Ingrese su Documento" required>
 
-                                <div class="form-group">
-                                    <label for="nombre">Documento</label>
-                                    <input type="text" class="form-control" id="documentoEstudiante" placeholder="Ingrese su Documento" required>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="apellido">Nombre</label>
+                                        <input type="text" class="form-control" id="nombreEstudiante" placeholder="Ingrese su Nombre" required>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="fechaNacimiento">Apellido</label>
+                                        <input type="text" class="form-control" id="apellidoEstudiante" placeholder="Ingrese su apellido" required>
+                                    </div>
 
-                                </div>
-                                <div class="form-group">
-                                    <label for="apellido">Nombre</label>
-                                    <input type="text" class="form-control" id="nombreEstudiante" placeholder="Ingrese su Nombre" required>
-                                </div>
-                                <div class="form-group">
-                                    <label for="fechaNacimiento">Apellido</label>
-                                    <input type="text" class="form-control" id="apellidoEstudiante" placeholder="Ingrese su apellido" required>
-                                </div>
+                                    <div class="form-group">
+                                        <label for="apellido">Fecha Nacimiento</label>
+                                        <input type="date" class="form-control" id="fechaNacimiento" required>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="fechaNacimiento">Dirección</label>
+                                        <input type="text" class="form-control" id="direccion" placeholder="Ingrese su dirección" required>
+                                    </div>
 
-                                <div class="form-group">
-                                    <label for="apellido">Fecha Nacimiento</label>
-                                    <input type="date" class="form-control" id="fechaNacimiento" required>
-                                </div>
-                                <div class="form-group">
-                                    <label for="fechaNacimiento">Dirección</label>
-                                    <input type="text" class="form-control" id="direccion" placeholder="Ingrese su dirección" required>
-                                </div>
+                                    <div class="form-group">
+                                        <label for="fechaNacimiento">Telefono</label>
+                                        <input type="number" class="form-control" id="telefono" placeholder="Ingrese su Telefono" required>
+                                    </div>
 
-                                <div class="form-group">
-                                    <label for="fechaNacimiento">Telefono</label>
-                                    <input type="number" class="form-control" id="telefono" placeholder="Ingrese su Telefono" required>
-                                </div>
+                                    <div class="form-group">
+                                        <label for="fechaNacimiento">Correo</label>
+                                        <input type="email" class="form-control" id="correo" placeholder="Ingrese su Correo" required>
+                                    </div>
 
-                                <div class="form-group">
-                                    <label for="fechaNacimiento">Correo</label>
-                                    <input type="email" class="form-control" id="correo" placeholder="Ingrese su Correo" required>
-                                </div>
-
+                                    </form>
 
 
                             </div>
                             <div class="modal-footer">
                                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
-                                <button type="button" class="btn btn-primary" id="agregarEstudiante">Guardar</button>
+                                <button type="button" class="btn btn-primary" id="agregarEstudiante" data-dismiss="modal" disabled>Guardar</button>
                             </div>
                         </div>
                     </div>
@@ -172,46 +173,47 @@
                                 </button>
                             </div>
                             <div class="modal-body">
+                                <form action="" id="formularioEditarEstudiante">
 
-                                <div class="form-group">
-                                    <label for="nombre">Documento</label>
-                                    <input type="text" class="form-control" id="documentoEstudianteEditar" placeholder="Ingrese su Documento" required>
+                                    <div class="form-group">
+                                        <label for="nombre">Documento</label>
+                                        <input type="text" class="form-control" id="documentoEstudianteEditar" placeholder="Ingrese su Documento" required>
 
-                                </div>
-                                <div class="form-group">
-                                    <label for="apellido">Nombre</label>
-                                    <input type="text" class="form-control" id="nombreEstudianteEditar" placeholder="Ingrese su Nombre" required>
-                                </div>
-                                <div class="form-group">
-                                    <label for="fechaNacimiento">Apellido</label>
-                                    <input type="text" class="form-control" id="apellidoEstudianteEditar" placeholder="Ingrese su apellido" required>
-                                </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="apellido">Nombre</label>
+                                        <input type="text" class="form-control" id="nombreEstudianteEditar" placeholder="Ingrese su Nombre" required>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="fechaNacimiento">Apellido</label>
+                                        <input type="text" class="form-control" id="apellidoEstudianteEditar" placeholder="Ingrese su apellido" required>
+                                    </div>
 
-                                <div class="form-group">
-                                    <label for="apellido">Fecha Nacimiento</label>
-                                    <input type="date" class="form-control" id="fechaNacimientoEditar" required>
-                                </div>
-                                <div class="form-group">
-                                    <label for="fechaNacimiento">Dirección</label>
-                                    <input type="text" class="form-control" id="direccionEditar" placeholder="Ingrese su dirección" required>
-                                </div>
+                                    <div class="form-group">
+                                        <label for="apellido">Fecha Nacimiento</label>
+                                        <input type="date" class="form-control" id="fechaNacimientoEditar" required>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="fechaNacimiento">Dirección</label>
+                                        <input type="text" class="form-control" id="direccionEditar" placeholder="Ingrese su dirección" required>
+                                    </div>
 
-                                <div class="form-group">
-                                    <label for="fechaNacimiento">Telefono</label>
-                                    <input type="number" class="form-control" id="telefonoEditar" placeholder="Ingrese su Telefono" required>
-                                </div>
+                                    <div class="form-group">
+                                        <label for="fechaNacimiento">Telefono</label>
+                                        <input type="number" class="form-control" id="telefonoEditar" placeholder="Ingrese su Telefono" required>
+                                    </div>
 
-                                <div class="form-group">
-                                    <label for="fechaNacimiento">Correo</label>
-                                    <input type="email" class="form-control" id="correoEditar" placeholder="Ingrese su Correo" required>
-                                </div>
+                                    <div class="form-group">
+                                        <label for="fechaNacimiento">Correo</label>
+                                        <input type="email" class="form-control" id="correoEditar" placeholder="Ingrese su Correo" required>
+                                    </div>
 
 
-
+                                </form>
                             </div>
                             <div class="modal-footer">
                                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
-                                <button type="button" class="btn btn-primary" id="editarEstudiante">Guardar Cambios</button>
+                                <button type="button" class="btn btn-primary" id="editarEstudiante" data-dismiss="modal">Guardar Cambios</button>
                             </div>
                         </div>
                     </div>
@@ -423,41 +425,43 @@
                             </div>
                             <div class="modal-body">
 
-                                <div class="form-group">
-                                    <label for="nombre">Nombre del Producto</label>
-                                    <input type="text" class="form-control" id="nombreProducto" placeholder="Ingrese el nombre del Producto" required>
+                                <form action="" id="formularioProductos">
+                                    <div class="form-group">
+                                        <label for="nombre">Nombre del Producto</label>
+                                        <input type="text" class="form-control" id="nombreProducto" placeholder="Ingrese el nombre del Producto" required>
 
-                                </div>
-                                <div class="form-group">
-                                    <label for="apellido">Duración</label>
-                                    <input type="number" class="form-control" id="duracionProducto" placeholder="Ingrese la Duración" required>
-                                </div>
-                                <div class="form-group">
-                                    <label for="fechaNacimiento">Categoria</label>
-                                    <select name="" id="categoriaProducto" class="form-control">
-                                        <option value="Undefined">Seleccione una Opción</option>
-                                        <option value="Categoría A1">Categoría A1</option>
-                                        <option value="Categoría A2">Categoría A2</option>
-                                        <option value="Categoría B1">Categoría B1</option>
-                                        <option value="Categoría B2">Categoría B2</option>
-                                        <option value="Categoría B3">Categoría B3</option>
-                                        <option value="Categoría C1">Categoría C1</option>
-                                        <option value="Categoría C2">Categoría C2</option>
-                                        <option value="Categoría C3">Categoría C3</option>
-                                    </select>
-                                </div>
-                                <div class="form-group">
-                                    <label class="form-check-label" for="exampleRadios1">Precio</label>
-                                    <input type="number" class="form-control" id="precioProducto" placeholder="Ingrese el Precio" required>
-                                </div>
-                                <div class="form-group">
-                                    <label class="form-check-label" for="exampleRadios1">Numero de Clases</label>
-                                    <input type="number" class="form-control" id="clasesProducto" placeholder="Ingrese el Numero de Clases" required>
-                                </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="apellido">Duración</label>
+                                        <input type="number" class="form-control" id="duracionProducto" placeholder="Ingrese la Duración (En Horas)" required>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="fechaNacimiento">Categoria</label>
+                                        <select name="" id="categoriaProducto" class="form-control">
+                                            <option value="Undefined">Seleccione una Opción</option>
+                                            <option value="Categoría A1">Categoría A1</option>
+                                            <option value="Categoría A2">Categoría A2</option>
+                                            <option value="Categoría B1">Categoría B1</option>
+                                            <option value="Categoría B2">Categoría B2</option>
+                                            <option value="Categoría B3">Categoría B3</option>
+                                            <option value="Categoría C1">Categoría C1</option>
+                                            <option value="Categoría C2">Categoría C2</option>
+                                            <option value="Categoría C3">Categoría C3</option>
+                                        </select>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="form-check-label" for="exampleRadios1">Precio</label>
+                                        <input type="number" class="form-control" id="precioProducto" placeholder="Ingrese el Precio" required>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="form-check-label" for="exampleRadios1">Numero de Clases</label>
+                                        <input type="number" class="form-control" id="clasesProducto" placeholder="Ingrese el Numero de Clases" required>
+                                    </div>
+                                </form>
                             </div>
                             <div class="modal-footer">
                                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
-                                <button type="button" class="btn btn-primary" id="agregarProducto">Guardar</button>
+                                <button type="button" class="btn btn-primary" id="agregarProducto" data-dismiss="modal" disabled>Guardar</button>
                             </div>
                         </div>
                     </div>
@@ -487,7 +491,7 @@
 
                                 <div class="form-group">
                                     <label for="apellido">Duración</label>
-                                    <input type="number" class="form-control" id="duracionProductoAEditar" placeholder="Ingrese la Duración" required>
+                                    <input type="number" class="form-control" id="duracionProductoAEditar" placeholder="Ingrese la Duración (En Horas)" required>
                                 </div>
 
                                 <div class="form-group">
@@ -526,10 +530,12 @@
 
             </div>
             <div class="my-auto">
+                <!-- Aqui se carga la tabla con los datos recuperados del Servidor -->
                 <div id="contenedorProductos">
 
                 </div>
 
+                <!-- Este boton solo se muestra cuando se realiza una busqueda Personalizada -->
                 <div class="btn-group">
                     <button id="btnAtrasProductos" class="btn btn-secondary">
                         <i class="fa fa-backward"></i> Volver Atras
@@ -861,7 +867,6 @@
 
 <script src="includes/jquery-easing/jquery.easing.min.js"></script>
 <script src="vista/js/navbar.js"></script>
-
 <script src="vista/js/profesores.js"></script>
 <script src="vista/js/estudiante.js"></script>
 <script src="vista/js/productos.js"></script>
