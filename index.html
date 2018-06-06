@@ -85,17 +85,21 @@
         <!-- SECCION DE ESTUDIANTES -->
         <section class="resume-section p-3 p-lg-5 d-flex flex-column" id="estudiantes">
 
-            <div class="row">
-                <div class="col-md-9">
-                    <h2 class="mb-5 my-titles">Estudiantes</h2>
-                </div>
-                <!-- Button trigger modal -->
-                <div class="col-md-3">
-                    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modalEstudiantes">
-                        Agregar
-                    </button>
-                </div>
+            <div class="col-md-8">
+                <h2 class="mb-5 my-titles">Estudiantes</h2>
             </div>
+
+
+            <!-- Button trigger modal -->
+            <nav class="navbar navbar-light bg-light">
+                <div class="form-inline">
+                    <input class="form-control mr-sm-2" type="search" placeholder="Buscar por Documento" aria-label="Search" id="buscarEstudiante">
+                    <button class="btn btn-outline-success my-2 my-sm-0" id="btnBuscarEstudiante">Buscar</button>
+                </div>
+                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modalEstudiantes">
+                    Agregar
+                </button>
+            </nav>
 
             <div class="form-group">
 
@@ -104,7 +108,7 @@
                     <div class="modal-dialog" role="document">
                         <div class="modal-content">
                             <div class="modal-header">
-                                <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+                                <h5 class="modal-title" id="exampleModalLabel">Agregar Estudiante</h5>
                                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                     <span aria-hidden="true">&times;</span>
                                 </button>
@@ -113,35 +117,35 @@
 
                                 <div class="form-group">
                                     <label for="nombre">Docuemento</label>
-                                    <input type="text" class="form-control" id="documentoEstudiante" placeholder="Ingrese su nombre" required>
+                                    <input type="text" class="form-control" id="documentoEstudiante" placeholder="Ingrese su Documento" required>
 
                                 </div>
                                 <div class="form-group">
                                     <label for="apellido">Nombre</label>
-                                    <input type="text" class="form-control" id="nombreEstudiante" placeholder="Ingrese su apellido" required>
+                                    <input type="text" class="form-control" id="nombreEstudiante" placeholder="Ingrese su Nombre" required>
                                 </div>
                                 <div class="form-group">
                                     <label for="fechaNacimiento">Apellido</label>
                                     <input type="text" class="form-control" id="apellidoEstudiante" placeholder="Ingrese su apellido" required>
                                 </div>
-                                
+
                                 <div class="form-group">
                                     <label for="apellido">Fecha Nacimiento</label>
-                                    <input type="date" class="form-control" id="fechaNacimiento" placeholder="Ingrese su apellido" required>
+                                    <input type="date" class="form-control" id="fechaNacimiento" required>
                                 </div>
                                 <div class="form-group">
                                     <label for="fechaNacimiento">Dirección</label>
-                                    <input type="text" class="form-control" id="direccion" required>
+                                    <input type="text" class="form-control" id="direccion" placeholder="Ingrese su dirección" required>
                                 </div>
 
                                 <div class="form-group">
                                     <label for="fechaNacimiento">Telefono</label>
-                                    <input type="number" class="form-control" id="telefono" required>
+                                    <input type="number" class="form-control" id="telefono" placeholder="Ingrese su Telefono" required>
                                 </div>
 
                                 <div class="form-group">
                                     <label for="fechaNacimiento">Correo</label>
-                                    <input type="email" class="form-control" id="correo" required>
+                                    <input type="email" class="form-control" id="correo" placeholder="Ingrese su Correo" required>
                                 </div>
 
 
@@ -154,19 +158,73 @@
                         </div>
                     </div>
                 </div>
+                <!--Fin modal Agregar-->
 
-            </div>
 
-            <div class="my-auto container">
-                <div>
-                    <p class="acerca-de-mi">
-                        Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolor non obcaecati ut repellendus reprehenderit iste, voluptates
-                        cumque atque saepe, sapiente repellat ea doloremque quod laboriosam quos qui amet quidem. Praesentium?
-                    </p>
+                <!-- Modal Editar Estudiante -->
+                <div class="modal fade" id="modalEstudiantesEditar" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                    <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="exampleModalLabel">Editar Estudiante</h5>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                            <div class="modal-body">
+
+                                <div class="form-group">
+                                    <label for="nombre">Docuemento</label>
+                                    <input type="text" class="form-control" id="documentoEstudianteEditar" placeholder="Ingrese su Documento" required>
+
+                                </div>
+                                <div class="form-group">
+                                    <label for="apellido">Nombre</label>
+                                    <input type="text" class="form-control" id="nombreEstudianteEditar" placeholder="Ingrese su Nombre" required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="fechaNacimiento">Apellido</label>
+                                    <input type="text" class="form-control" id="apellidoEstudianteEditar" placeholder="Ingrese su apellido" required>
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="apellido">Fecha Nacimiento</label>
+                                    <input type="date" class="form-control" id="fechaNacimientoEditar" required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="fechaNacimiento">Dirección</label>
+                                    <input type="text" class="form-control" id="direccionEditar" placeholder="Ingrese su dirección" required>
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="fechaNacimiento">Telefono</label>
+                                    <input type="number" class="form-control" id="telefonoEditar" placeholder="Ingrese su Telefono" required>
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="fechaNacimiento">Correo</label>
+                                    <input type="email" class="form-control" id="correoEditar" placeholder="Ingrese su Correo" required>
+                                </div>
+
+
+
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+                                <button type="button" class="btn btn-primary" id="editarEstudiante">Guardar Cambios</button>
+                            </div>
+                        </div>
+                    </div>
                 </div>
+                <!--Fin modal Editar-->
+
             </div>
 
             <div id="renderizarEstudiante">
+
+            </div>
+
+            <div id="consultaEstudiante">
 
             </div>
         </section>
@@ -185,7 +243,7 @@
                 <h2 class="mb-5 my-titles">Profesores</h2>
             </div>
 
-           
+
             <!-- Button trigger modal -->
             <nav class="navbar navbar-light bg-light">
                 <form class="form-inline">
@@ -196,7 +254,7 @@
                     Agregar
                 </button>
             </nav>
-            
+
 
             <div class="form-group">
 
@@ -704,7 +762,7 @@
 <script src="includes/jquery-easing/jquery.easing.min.js"></script>
 <script src="vista/js/navbar.js"></script>
 
-<script src="vista/js/profesores.js"></script> 
+<script src="vista/js/profesores.js"></script>
 <script src="vista/js/estudiante.js"></script>
 <script src="vista/js/productos.js"></script>
 
