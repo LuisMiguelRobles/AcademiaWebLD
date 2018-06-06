@@ -9,9 +9,12 @@ $(function () {
      */
     $.ajax({
 
-        "url": "vista/json/profesores.json",
-        "type": "GET",
-        "data": {},
+        "url": "controlador/fachada.php",
+        "type": "POST",
+        "data": {
+            clase : 'Profesor',
+            oper: 'select'
+        },
         "dataType": "JSON"
 
 

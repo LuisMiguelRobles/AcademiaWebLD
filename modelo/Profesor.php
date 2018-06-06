@@ -11,7 +11,7 @@
  *
  * @author diegofranco
  */
-class Polizas {
+class Profesor{
  /*
         PARA ESTE METODO SE DEBE ENVIAR UN DATA CON LOS SIGUIENTES NOMBRES
         cedulaprofesor
