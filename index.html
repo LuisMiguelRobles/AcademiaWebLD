@@ -382,12 +382,6 @@
 
         <!-- FIN DE LA SECCIÓN DE PROFESORES -->
 
-
-
-
-
-
-
         <!-- SECCION DE PRODUCTOS -->
         <section class="resume-section p-3 p-lg-5 d-flex flex-column" id="productos">
 
@@ -636,6 +630,39 @@
         </section>
         <!-- FIN SECCION DE VEHICULOS -->
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
         <!-- SECCION DE VENTAS -->
         <!-- OSCAR -->
         <section class="resume-section p-3 p-lg-5 d-flex flex-column" id="venta">
@@ -644,12 +671,13 @@
                     <h2 class="mb-5 my-titles">Venta</h2>
                 </div>
                 <!-- Button trigger modal -->
-                <div class="col-md-3">
+                <div class="col-md-3"><br>
                     <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modalVentas">
                         Agregar
                     </button>
                 </div>
             </div>
+                
             <div class="form-group">
 
                 <!-- Modal -->
@@ -657,7 +685,7 @@
                     <div class="modal-dialog" role="document">
                         <div class="modal-content">
                             <div class="modal-header">
-                                <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+                                <h5 class="modal-title" id="exampleModalLabel">Seleccionar clases</h5>
                                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                     <span aria-hidden="true">&times;</span>
                                 </button>
@@ -665,43 +693,44 @@
                             <div class="modal-body">
 
                                 <div class="form-group">
-                                    <label for="nombre">Nombre</label>
-                                    <input type="text" class="form-control" id="nombre" placeholder="Ingrese su nombre" required>
-
-                                </div>
-                                <div class="form-group">
-                                    <label for="apellido">Password</label>
-                                    <input type="text" class="form-control" id="apellido" placeholder="Ingrese su apellido" required>
-                                </div>
-                                <div class="form-group">
-                                    <label for="fechaNacimiento">Fecha Nacimiento</label>
-                                    <input type="date" class="form-control" id="fechaNacimiento" required>
-                                </div>
-                                <div class="form-group">
-                                    <label class="form-check-label" for="exampleRadios1">
-                                        Genero
-                                    </label>
-                                    <select name="" id="genero" class="form-control" required>
-                                        <option value="hombre">Hombre</option>
-                                        <option value="mujer">Mujer</option>
-                                        <option value="indefinido">Indefinido</option>
+                                    <label for="estudiante">Seleccione estudiante</label><br>
+                                    <select id="seleccionarEstudiante" class="form-control">
+                                        <option></option>
                                     </select>
-
+                                </div>
+                                <div class="form-group">
+                                    <label for="profesor">Seleccione profesor</label><br>
+                                    <select id="seleccionarProfesor" class="form-control">
+                                        <option></option>
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                    <label for="vehiculo">Seleccione vehiculo</label><br>
+                                    <select id="seleccionarVehiculo" class="form-control">
+                                        <option></option>
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                <label for="fechas">Seleccione horario</label><br>
+                                        <input type="date" id="horarios" class="form-control">
+                                </div>
+                                <div class="form-group">
+                                    <label for="producto">Seleccione producto</label><br>
+                                    <select id="seleccionarProductoventas" class="form-control">
+                                        <option></option>
+                                    </select>
                                 </div>
                             </div>
                             <div class="modal-footer">
                                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
-                                <button type="button" class="btn btn-primary" id="enviar">Guardar</button>
+                                <button type="button" class="btn btn-primary" id="agrego">Guardar</button>
                             </div>
                         </div>
                     </div>
                 </div>
-            </div>
-            <div class="my-auto">
-                <p class="text-justify">
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolor architecto corporis expedita, error explicabo distinctio ab
-                    vero doloremque ipsa cum perspiciatis iusto veniam quia tempora? Ea quasi voluptatem amet quas!
-                </p>
+                <div id="tablaventas">
+                    
+                </div>
             </div>
         </section>
         <!-- FIN SECCION DE VENTAS -->
@@ -865,8 +894,10 @@
     </script>
     ======= >>>>>>> 24e005d45cc5735a5c7ba4198f57312dca6c1c5d
 
-    <script src="vista/js/profesores.js"></script>
+<script src="vista/js/profesores.js"></script>
     <script src="vista/js/estudiante.js"></script>
+
     <script src="vista/js/productos.js"></script>
+    <script type="text/javascript" src="vista/js/venta.js"></script>
 
 </html>
