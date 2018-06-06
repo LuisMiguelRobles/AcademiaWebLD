@@ -202,3 +202,11 @@ a:active {
 #btnAtrasProductos{
     display: none;
 }
+
+#btnAtrasEstudiante{
+    display: none;
+}
+
+#btnAtrasProfesor{
+    display: none;
+}

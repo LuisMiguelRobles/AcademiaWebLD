@@ -3,26 +3,96 @@ let urlEstudiantes = "controlador/fachada.php";
 
 $(function () {
 
+    /**
+     * Llamado a la funcion obtenerEstudiantes
+     */
     obtenerEstudiantes();
 
+    /**
+     * Llamado de las agregarEstudiante y limpiarAgregarEstudiante cuando el boton agregar es clickeado
+     */
     $("#agregarEstudiante").click(function () {
         agregarEstudiante();
+
+        $("#modalEstudiantes").modal('toggle');
+        limpiarAgregarEstudiante();
+        $("#agregarEstudiante").prop('disabled',true);
     })
 
+    /**
+     * Llamado de las editarEstudiante y limpiarEditarEstudiante cuando el boton editar es clickeado
+     */
     $("#editarEstudiante").click(function () {
         editarEstudiante();
+        $("#modalEstudiantesEditar").modal('toggle');
+        limpiarEditarEstudiante();
+        $("#editarrEstudiante").prop('disabled',true);
     });
+
+    /**
+     * Llamado de la obtenerPorCedula cuando el boton buscar es clickeado
+     */
     $("#btnBuscarEstudiante").click(function () {
-        obtenerPorCedula();
-        console.log($("#buscarEstudiante").val());
-        $("#buscarEstudianteEditar").val("");
-        $("#consultaEstudiante").show();
+        obtenerPorCedula();        
+        $("#buscarEstudiante").val("");
+
+    });
+
+    $("#btnAtrasEstudiante").click(function () {
+        obtenerEstudiantes();
+        $("#btnAtrasEstudiante").fadeOut();
+    });
+
+    $("#formularioAgregarEstudiante").change(function(){
+        $("#agregarEstudiante").prop('disabled',!validarCamposAgregarEstudiante());
+
+    });
+    $("#formularioEditarEstudiante").change(function(){
+        $("#agregarEstudiante").prop('disabled',!validarCamposEditarrEstudiante());
+
     });
 
 
 
 });
 
+
+/**
+ * Peticion POST al servidor, con la cual se envian nuevos estudiantes
+ */
+function agregarEstudiante() {
+
+    $.ajax({
+        "url": urlEstudiantes,
+        "type": "POST",
+        "data": {
+            clase: "Estudiante",
+            oper: "add",
+            documentoestudiante: $("#documentoEstudiante").val(),
+            nombreEstudiante: $("#nombreEstudiante").val(),
+            apellidoEstudiante: $("#apellidoEstudiante").val(),
+            fechaNacimiento: $("#fechaNacimiento").val(),
+            direccion: $("#direccion").val(),
+            telefono: $("#telefono").val(),
+            correo: $("#correo").val()
+        },
+        "dataType": "JSON"
+
+    }).done(function () {
+
+        obtenerEstudiantes();   
+    }).always(function(){
+        obtenerEstudiantes();
+
+    });
+
+
+}
+
+
+/**
+ * Peticion get el servidor para obtener todos los registros
+ */
 function obtenerEstudiantes() {
 
     $.ajax({
@@ -43,11 +113,13 @@ function obtenerEstudiantes() {
         }
 
 
-    }).always(function (data) {
-        //console.log(data);
     });
 
 }
+
+/**
+ * Renderiza cada uno de los registros obtenidos del servidor
+ */
 
 function renderizar(data) {
 
@@ -56,14 +128,14 @@ function renderizar(data) {
     tablaEstudiantes = `<table class="table table-bordered ">
                 <thead class="thead-dark">
                     <tr>
-                        <td>Documento</td>
-                        <td>Nombre</td>
-                        <td>Apellido</td>
-                        <td>Fecha de Nacimiento</td>
-                        <td>Dirección</td>
-                        <td>Telefono</td>
-                        <td>Correo</td>
-                        <td>Opciones</td>
+                        <th>Documento</th>
+                        <th>Nombre</th>
+                        <th>Apellido</th>
+                        <th>Fecha de Nacimiento</th>
+                        <th>Dirección</th>
+                        <th>Telefono</th>
+                        <th>Correo</th>
+                        <th>Opciones</th>
                     </tr>
                 </thead>`;
 
@@ -91,34 +163,12 @@ function renderizar(data) {
 }
 
 
-function agregarEstudiante() {
-
-    $.ajax({
-        "url": urlEstudiantes,
-        "type": "POST",
-        "data": {
-            clase: "Estudiante",
-            oper: "add",
-            documentoestudiante: $("#documentoEstudiante").val(),
-            nombreEstudiante: $("#nombreEstudiante").val(),
-            apellidoEstudiante: $("#apellidoEstudiante").val(),
-            fechaNacimiento: $("#fechaNacimiento").val(),
-            direccion: $("#direccion").val(),
-            telefono: $("#telefono").val(),
-            correo: $("#correo").val()
-        },
-        "dataType": "JSON"
-
-    }).done(function (data) {
-        console.log(data);
-        obtenerEstudiantes();
-    }).always((data) => {
-        console.log(data);
-    });
 
 
-}
-
+/**
+ * 
+ *Elimina un estudiante seleccionado mediante su documento
+ */
 function eliminarEstudiante(documentoestudiante) {
 
     $.ajax({
@@ -139,6 +189,10 @@ function eliminarEstudiante(documentoestudiante) {
 }
 
 
+/**
+ * 
+ *Llama a una ventana modal en la cual se cargan los datos del estudiante mediante su documento
+ */
 function modalEditarEstudiante(documentoestudiante) {
 
 
@@ -157,6 +211,9 @@ function modalEditarEstudiante(documentoestudiante) {
         }
     }
 }
+/**
+ *  Modifica solo un estudiante 
+ */
 
 function editarEstudiante() {
     data = {
@@ -173,7 +230,7 @@ function editarEstudiante() {
 
 
     $.ajax({
-        "url": url,
+        "url": urlEstudiantes,
         "type": "POST",
         "data": data,
         "dataType": "JSON",
@@ -181,146 +238,100 @@ function editarEstudiante() {
 
     }).done(function (data) {
 
-        obtenerEstudiantes();
-    }).always(() => {
 
-        console.log(data);
+        obtenerEstudiantes();
     });
 }
 
 
 
-/*function obtenerPorDocumento(documento) {
-
-    $.ajax({
-
-        "url": url,
-        "type": "GET",
-        "data": {
-            clase: "Estudiante",
-            oper: "select1",
-            documentoestudiante: documento
-
-        },
-        "dataType": "JSON"
-    }).done(function (value) {
-        let tablaEstudiantes = "";
-
-        tablaEstudiantes = `<table class="table table-bordered ">
-                    <thead class="thead-dark">
-                        <tr>
-                            <td>Documento</td>
-                            <td>Nombre</td>
-                            <td>Apellido</td>
-                            <td>Fecha de Nacimiento</td>
-                            <td>Dirección</td>
-                            <td>Telefono</td>
-                            <td>Correo</td>
-                            <td>Opciones</td>
-                        </tr>
-                    </thead>`;
-
-
-        tablaEstudiantes +=
-            `<tr>
-                    <td>${value.documentoestudiante}</td>
-                    <td>${value.nombreestudiante}</td>
-                    <td>${value.apellidoestudiante}</td>
-                    <td>${value.fechanacimiento}</td>
-                    <td>${value.direccion}</td>
-                    <td>${value.telefono}</td>
-                    <td>${value.correo}</td>
-                    <td>
-                        <div class="btn-group">
-                            <button class="btn btn-info" data-toggle="modal" data-target="#modalEstudiantesEditar" onclick="modalEditarEstudiante(${value.documentoestudiante})">Editar</button>
-                            <button class="btn btn-danger delete" id="delete" onclick="eliminarEstudiante(${value.documentoestudiante})">Eliminar</button>
-                        </div>     
-                    </td>
-                </tr>`;
-
-
-        tablaEstudiantes += `</table><br><button class="btn btn-default" onclick="atras()">Atras</button>`;
-        $("#renderizarEstudiante").hide();
-
-        $("#consultaEstudiante").html(tablaEstudiantes);
-
-
-        $("#renderizarEstudiante").html(tablaEstudiantes);
-
-
-
-
-
-
-    });
-}*/
-
+/**
+ * Obtiene solo un estudiante y lo muestra en la tabla de estudiantes
+ */
 
 function obtenerPorCedula() {
-    alert("hola")
 
     $.ajax({
 
-        "url": url,
+        "url": urlEstudiantes,
         "type": "GET",
         "data": {
             clase: "Estudiante",
             oper: "select1",
-            documentoestudiante: $("#buscarEstudiante").val()
+            documentoEstudiante: $("#buscarEstudiante").val()
 
         },
         "dataType": "JSON"
-    }).done(function (data) {
-
-        let html;
-
-        if (data) {
-            html = `<table class="table table-bordered table-striped table-dark ">
-            <thead class="thead-dark">
-                <tr>
-                    <td>Documento</td>
-                    <td>Nombre</td>
-                    <td>Apellido</td>
-                    <td>Fecha de Nacimiento</td>
-                    <td>Dirección</td>
-                    <td>Telefono</td>
-                    <td>Correo</td>
-                    <td>Opciones</td>                    
-                </tr>
-            </thead>`;
-
-
-            html +=
-                `<tr>
-                <td>${data.documentoestudiante}</td>
-                <td>${data.nombreestudiante}</td>
-                <td>${data.apellidoestudiante}</td>
-                <td>${data.fechanacimiento}</td>
-                <td>${data.direccion}</td>
-                <td>${data.telefono}</td>
-                <td>${data.correo}</td>
-            <td>
-            <div class="btn-group">
-            <button class="btn btn-info" data-toggle="modal" data-target="#modalEstudiantesEditar" onclick="modalEditarEstudiante(${data.documentoestudiante})">Editar</button>
-            <button class="btn btn-danger delete" id="delete" onclick="eliminarEstudiante(${data.documentoestudiante})">Eliminar</button>
-        </div>  
-            </td>
-        </tr>`;
-
-            html += `</table><br><button class="btn btn-default" onclick="atras()">Atras</button>`;
-            $("#renderizarEstudiante").hide();
-
-            $("#consultaEstudiante").html(html);
-
-
-
-
-        }
+    }).done((data) => {
         console.log(data);
+        if (data) {
+            estudiantes = data;
+            renderizar(estudiantes);
+            $("#btnAtrasEstudiante").fadeIn();
+        } else {
+            alert("No se encontro ningun registro");
+        }
+
+
     });
 }
 
-function atras() {
-    $("#renderizarEstudiante").show();
-    $("#consultaEstudiante").hide();
+/**
+ * Valida que los campos para agregar un nuevo estudiante no queden vacios
+ */
+function validarCamposAgregarEstudiante() {
+
+    return $("#documentoEstudiante").val() != "" &&
+        $("#nombreEstudiante").val() != "" &&
+        $("#apellidoEstudiante").val() != "" &&
+        $("#fechaNacimiento").val() != "" &&
+        $("#direccion").val() != "" &&
+        $("#telefono").val() != "" &&
+        $("#correo").val() != "";
+
+}
+
+
+/**
+ * 
+ * Valida que los campos para Editar un nuevo estudiante no queden vacios
+ */
+function validarCamposEditarrEstudiante() {
+
+    return $("#documentoEstudianteEditar").val() != "" &&
+        $("#nombreEstudianteEditar").val() != "" &&
+        $("#apellidoEstudianteEditar").val() != "" &&
+        $("#fechaNacimientoEditar").val() != "" &&
+        $("#direccionEditar").val() != "" &&
+        $("#telefonoEditar").val() != "" &&
+        $("#correoEditar").val() != "";
+
+}
+
+/**
+ * limpia los campos ingresados para agregar un nuevo estudiante
+ */
+function limpiarAgregarEstudiante() {
+
+    $("#documentoEstudiante").val("");
+    $("#nombreEstudiante").val("");
+    $("#apellidoEstudiante").val("");
+    $("#fechaNacimiento").val("");
+    $("#direccion").val("");
+    $("#telefono").val("");
+    $("#correo").val("");
+}
+
+/**
+ * limpia los campos ingresados para editar un nuevo estudiante
+ */
+function limpiarEditarEstudiante() {
+
+    $("#documentoEstudianteEditar").val("");
+    $("#nombreEstudianteEditar").val("");
+    $("#apellidoEstudianteEditar").val("");
+    $("#fechaNacimientoEditar").val("");
+    $("#direccionEditar").val("");
+    $("#telefonoEditar").val("");
+    $("#correoEditar").val("");
 }
