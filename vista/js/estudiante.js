@@ -56,6 +56,36 @@ $(function () {
 
 
 /**
+ * Peticion POST al servidor, con la cual se envian nuevos estudiantes
+ */
+function agregarEstudiante() {
+
+    $.ajax({
+        "url": urlEstudiantes,
+        "type": "POST",
+        "data": {
+            clase: "Estudiante",
+            oper: "add",
+            documentoestudiante: $("#documentoEstudiante").val(),
+            nombreEstudiante: $("#nombreEstudiante").val(),
+            apellidoEstudiante: $("#apellidoEstudiante").val(),
+            fechaNacimiento: $("#fechaNacimiento").val(),
+            direccion: $("#direccion").val(),
+            telefono: $("#telefono").val(),
+            correo: $("#correo").val()
+        },
+        "dataType": "JSON"
+
+    }).done(function () {
+
+        obtenerEstudiantes();
+    });
+
+
+}
+
+
+/**
  * Peticion get el servidor para obtener todos los registros
  */
 function obtenerEstudiantes() {
@@ -128,34 +158,7 @@ function renderizar(data) {
 }
 
 
-/**
- * Peticion POST al servidor, con la cual se envian nuevos estudiantes
- */
-function agregarEstudiante() {
 
-    $.ajax({
-        "url": urlEstudiantes,
-        "type": "POST",
-        "data": {
-            clase: "Estudiante",
-            oper: "add",
-            documentoestudiante: $("#documentoEstudiante").val(),
-            nombreEstudiante: $("#nombreEstudiante").val(),
-            apellidoEstudiante: $("#apellidoEstudiante").val(),
-            fechaNacimiento: $("#fechaNacimiento").val(),
-            direccion: $("#direccion").val(),
-            telefono: $("#telefono").val(),
-            correo: $("#correo").val()
-        },
-        "dataType": "JSON"
-
-    }).done(function (data) {
-
-        obtenerEstudiantes();
-    });
-
-
-}
 
 /**
  * 
