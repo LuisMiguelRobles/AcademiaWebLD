@@ -198,3 +198,7 @@ a:active {
 }
 
 /* FIN DE LOS ESTILOS OBLIGATORIOS */
+
+#btnAtrasProductos{
+    display: none;
+}
