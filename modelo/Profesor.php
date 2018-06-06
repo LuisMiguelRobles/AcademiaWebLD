@@ -40,7 +40,7 @@ class Profesor{
         extract($param);
         $where = $conexion->getWhere($param);
         $sql = "SELECT cedulaprofesor, nombreprofesor, apellidoprofesor, fechanacimiento, direccionprofesor, telefonoprofesor, correoprofesor, profesionprofesor
-             FROM public.profesor where = cedulaprofesor = ?;";
+             FROM public.profesor where cedulaprofesor = ?;";
        $rs = $conexion->getPDO()->prepare($sql);
         if ($rs->execute(array($cedulaprofesor))) {
             if ($filas = $rs->fetchAll(PDO::FETCH_ASSOC)) {
@@ -93,7 +93,7 @@ class Profesor{
 
     */
     
-      function edit($param) {
+    function edit($param) {
         extract($param);
         $sql = "UPDATE profesor
                 SET nombreprofesor=?, apellidoprofesor=?, fechanacimiento=?, direccionprofesor=?, telefonoprofesor=?, correoprofesor=?, profesionprofesor=?
@@ -110,7 +110,7 @@ class Profesor{
         cedulaprofesor
  
     */
-       function delete($param) {
+    function delete($param) {
         extract($param);
         $sql = " DELETE FROM profesor
                      WHERE cedulaprofesor= ?;";   
