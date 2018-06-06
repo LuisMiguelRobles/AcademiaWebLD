@@ -3,7 +3,7 @@
 /**
 * 
 */
-class Clase extends 
+class Clase 
 {
 	 function select($param) {
         extract($param);
