@@ -13,6 +13,7 @@ $(function () {
      */
     $("#agregarEstudiante").click(function () {
         agregarEstudiante();
+
         $("#modalEstudiantes").modal('toggle');
         limpiarAgregarEstudiante();
         $("#agregarEstudiante").prop('disabled',true);
