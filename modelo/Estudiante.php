@@ -17,7 +17,23 @@ class Estudiante {
     */
     function select($param) {
         extract($param);
-        $where = $conexion->getWhere($param);
+        $sql = "SELECT documentoestudiante, nombreestudiante, apellidoestudiante, fechanacimiento, direccion, telefono, correo
+                FROM public.estudiante ;";
+       $rs = $conexion->getPDO()->prepare($sql);
+        if ($rs->execute(array())) {
+            if ($filas = $rs->fetchAll(PDO::FETCH_ASSOC)) {
+                foreach ($filas as $fila) {
+
+                    $array[] = $fila;
+                }
+            }
+        }
+
+        echo json_encode(($array));
+    }
+
+    function select1($param) {
+        extract($param);
         $sql = "SELECT documentoestudiante, nombreestudiante, apellidoestudiante, fechanacimiento, direccion, telefono, correo
                 FROM public.estudiante where documentoestudiante = ?;";
        $rs = $conexion->getPDO()->prepare($sql);
@@ -47,15 +63,14 @@ class Estudiante {
     */
 
     function add($param) {
-        extract($param);
-        
-        $sql = "INSERT INTO estudiante(
-    documentoestudiante, nombreestudiante, apellidoestudiante, fechanacimiento, direccion, telefono, correo)
+        extract($param);    
+        $sql = "INSERT INTO estudiante(documentoestudiante, nombreestudiante, apellidoestudiante, fechanacimiento, direccion, telefono, correo)
     VALUES (?, ?, ?, ?, ?, ?, ?);";
         $rs = $conexion->getPDO()->prepare($sql);
         $rs->execute(array($documentoestudiante, $nombreEstudiante, $apellidoEstudiante, $fechaNacimiento,
             $direccion, $telefono, $correo));
         echo $conexion->getEstado();
+        echo(json_encode($sql));
     }
 
     /*
