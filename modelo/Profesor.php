@@ -22,6 +22,24 @@ class Profesor{
         extract($param);
         $where = $conexion->getWhere($param);
         $sql = "SELECT cedulaprofesor, nombreprofesor, apellidoprofesor, fechanacimiento, direccionprofesor, telefonoprofesor, correoprofesor, profesionprofesor
+             FROM public.profesor;";
+       $rs = $conexion->getPDO()->prepare($sql);
+        if ($rs->execute(array())) {
+            if ($filas = $rs->fetchAll(PDO::FETCH_ASSOC)) {
+                foreach ($filas as $fila) {
+
+                    $array[] = $fila;
+                }
+            }
+        }
+
+        echo json_encode(($array));
+    }
+
+    function select1($param) {
+        extract($param);
+        $where = $conexion->getWhere($param);
+        $sql = "SELECT cedulaprofesor, nombreprofesor, apellidoprofesor, fechanacimiento, direccionprofesor, telefonoprofesor, correoprofesor, profesionprofesor
              FROM public.profesor where = cedulaprofesor = ?;";
        $rs = $conexion->getPDO()->prepare($sql);
         if ($rs->execute(array($cedulaprofesor))) {

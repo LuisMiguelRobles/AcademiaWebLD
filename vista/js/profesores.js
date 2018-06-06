@@ -3,79 +3,118 @@ let profesores = [];
 let cedulaEdit;
 $(function () {
 
+    obtenerProfesores();
+   
+});
 
-    /**
+function obtenerProfesores() {
+     /**
      * Peticion Get al Servidor
      */
     $.ajax({
 
         "url": "controlador/fachada.php",
-        "type": "POST",
+        "type": "GET",
         "data": {
-            clase : 'Profesor',
+            clase :'Profesor',
             oper: 'select'
         },
-        "dataType": "JSON"
-
+        "dataType": "JSON",
+        "Async": "false"
 
     }).done(function (data) {
         profesores = data;
+        
         if (data) {
             console.log(data);
-            renderizar(data);
+            renderizarTablaProfesores(data);
         }
+    }).fail(function (error) {
+        alert("No se recibio respuesta del Servidor..." + error);
+        console.log(error);
     });
 
-    $('#add').click(function () {
-        agregar();
-        renderizar(profesores);
+    $('#addProfesor').click(function () {
+        agregarDocente();
     });
 
-    $('#editar').click(function () {
+    $('#editarProfesor').click(function () {
         editar();
         //limpiarCampos();
     });
-
-});
-
-let agregar = () => {
-    let obj = {};
-    obj.nombre = $('#nombreProfesor').val();
-    obj.apellido = $('#apellidoProfesor').val();
-    obj.cedula = $('#cedulaProfesor').val();
-
-    profesores.push(obj);
 }
 
-
-function renderizar(data) {
+function renderizarTablaProfesores(data) {
 
 
     let html = `<table class="table table-bordered">
-                <thead>
+                <thead class="thead-dark">
                     <tr>
+                        <th>Cedula</th>
                         <th>Nombre</th>
                         <th>Apellido</th>
-                        <th>Cedula</th>
+                        <th>Fecha de nacimiento</th>
+                        <th>Direccion</th>
+                        <th>Teléfono</th>
+                        <th>Correo</th>
+                        <th>Profesión</th>
+                        <th>Acciones</th>
                     </tr>
                 </thead>`;
 
     $.each(data, function (key, value) {
         html +=
             `<tr>
-                <td>${value.nombre}</td>
-                <td>${value.apellido}</td>
-                <td>${value.cedula}</td>
+                <td>${value.cedulaprofesor}</td>
+                <td>${value.nombreprofesor}</td>
+                <td>${value.apellidoprofesor}</td>
+                <td>${value.fechanacimiento}</td>
+                <td>${value.direccionprofesor}</td>
+                <td>${value.telefonoprofesor}</td>
+                <td>${value.correoprofesor}</td>
+                <td>${value.profesionprofesor}</td>
                 <td>
-                    <button class="btn btn-info" data-toggle="modal" data-target="#modalProfesoresEditar" onclick="llenarCamposEditar(${value.cedula})">Editar</button>
-                    <button class="btn btn-danger delete" id="delete" onclick="eliminar(${value.cedula})">Eliminar</button>
+                    <div class="btn-group">
+                        <button class="btn btn-info" data-toggle="modal" data-target="#modalProfesoresEditar" onclick="llenarCamposEditar(${value.cedula})">Editar</button>
+                        <button class="btn btn-danger delete" id="delete" onclick="eliminar(${value.cedula})">Eliminar</button>
+                    </div>
                 </td>
             </tr>`;
     });
     html += `</table>`;
-    $("#render").html(html);
+    $("#tablaProfesor").html(html);
 
 }
+
+let agregarDocente = () => {
+    
+    $.ajax({
+
+        "url": "controlador/fachada.php",
+        "type": "POST",
+        "data": {
+            clase :'Profesor',
+            oper: 'add',
+            cedulaprofesor : $('#cedulaProfesor').val(),
+            nombreprofesor : $('#nombreProfesor').val(),
+            apellidoprofesor : $('#apellidoProfesor').val(),
+            fechanacimiento : $('#fechaNacimientoProfesor').val(),
+            direccionprofesor : $('#direccionProfesor').val(),
+            telefonoprofesor : $('#telefonoProfesor').val(),
+            correoprofesor : $('#correoProfesor').val(),
+            profesionprofesor : $('#profesionProfesor').val()
+        },
+        "dataType": "JSON"
+    }).done(function(data){
+
+        console.log(data);
+        renderizarTablaProfesores(data);
+        
+    })
+}
+
+
+
 
 let llenarCamposEditar = (cedulaAEditar) => {
 
@@ -105,39 +144,6 @@ let editar = () => {
 
     renderizar(profesores);
 }
-
-
-// function llenarCamposEditar(cedulaAEditar) {
-//     let index;
-
-//     for (let value of profesores) {
-//         if (value.cedula == cedulaAEditar) {
-//             index = profesores.indexOf(value);
-//             $("#nombreProfesorEditar").val(value.nombre);
-//             $("#apellidoProfesorEditar").val(value.apellido);
-//             $("#cedulaProfesorEditar").val(value.cedula);
-//         }
-//     }
-
-//     editar();
-// }
-
-// let editar = () => {
-//     let obj = {};
-
-//     obj.nombre = $('#nombreProfesorEditar').val();
-//     obj.apellido = $('#apellidoProfesorEditar').val();
-//     obj.cedula = $('#cedulaProfesorEditar').val();
-
-//     for (let i = 0; i < profesores.length; i++) {
-//         if (profesores[i].cedula == cedula) {
-//             profesores[i] = obj;
-//             break;
-//         }
-//     }
-
-//     renderizar(profesores);
-// }
 
 
 function eliminar(cedula) {
