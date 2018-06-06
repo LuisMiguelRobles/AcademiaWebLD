@@ -13,6 +13,7 @@ $(function () {
      */
     $("#agregarEstudiante").click(function () {
         agregarEstudiante();
+        
         limpiarAgregarEstudiante();
         $("#agregarEstudiante").prop('disabled',true);
     })
@@ -78,7 +79,10 @@ function agregarEstudiante() {
 
     }).done(function () {
 
+        obtenerEstudiantes();   
+    }).always(function(){
         obtenerEstudiantes();
+
     });
 
 
