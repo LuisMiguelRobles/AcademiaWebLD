@@ -35,7 +35,7 @@ class Estudiante {
     function select1($param) {
         extract($param);
         $sql = "SELECT documentoestudiante, nombreestudiante, apellidoestudiante, fechanacimiento, direccion, telefono, correo
-                FROM public.estudiante where documentoestudiante = ?;";
+                FROM estudiante where documentoestudiante = ?;";
        $rs = $conexion->getPDO()->prepare($sql);
         if ($rs->execute(array($documentoEstudiante))) {
             if ($filas = $rs->fetchAll(PDO::FETCH_ASSOC)) {
