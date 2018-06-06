@@ -174,7 +174,6 @@ function obtenerClases() {
         "dataType": "JSON"
 
     }).done(function (data) {
-        //console.log(data);
         if (data) {
           clases = data;
           console.log(clases);

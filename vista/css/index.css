@@ -206,3 +206,7 @@ a:active {
 #btnAtrasEstudiante{
     display: none;
 }
+
+#btnAtrasProfesor{
+    display: none;
+}
