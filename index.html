@@ -20,7 +20,7 @@
         <a class="navbar-brand js-scroll-trigger" href="#page-top">
             <span class="d-block d-lg-none">Academia</span>
             <span class="d-none d-lg-block">
-                <img class="img-fluid img-profile rounded-circle mx-auto mb-2" src="" alt="">
+                <img class="img-fluid img-profile rounded-circle mx-auto mb-2" src="vista/img/logo.png" alt="">
             </span>
         </a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
@@ -246,10 +246,10 @@
 
             <!-- Button trigger modal -->
             <nav class="navbar navbar-light bg-light">
-                <form class="form-inline">
+                <div class="form-inline">
                     <input class="form-control mr-sm-2" type="search" placeholder="Buscar por cedula" aria-label="Search" id="buscarDocente">
                     <button class="btn btn-outline-success my-2 my-sm-0" id="btnBuscarDocente">Buscar</button>
-                </form>
+                </div>
                 <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modalProfesores">
                     Agregar
                 </button>
@@ -306,7 +306,7 @@
                             </div>
                             <div class="modal-footer">
                                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
-                                <button type="button" class="btn btn-primary" id="add">Guardar</button>
+                                <button type="button" class="btn btn-primary" id="addProfesor">Guardar</button>
                             </div>
                         </div>
                     </div>
@@ -314,7 +314,7 @@
 
             </div>
 
-            <div id="render">
+            <div id="tablaProfesor">
 
             </div>
 
@@ -388,28 +388,32 @@
         <!-- SECCION DE PRODUCTOS -->
         <section class="resume-section p-3 p-lg-5 d-flex flex-column" id="productos">
 
-            <div class="row">
-                <div class="col-md-9">
-                    <h2 class="mb-5 my-titles">Productos</h2>
-                </div>
-                <!-- Button trigger modal -->
-                <div class="col-md-3">
-                    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modalProductos">
-                        Agregar
-                    </button>
-                </div>
+            <div class="col-md-8">
+                <h2 class="mb-5 my-titles">Productos</h2>
             </div>
+
+
+            <!-- Button trigger modal -->
+            <nav class="navbar navbar-light bg-light">
+                <div class="form-inline">
+                    <input class="form-control mr-sm-2" type="search" placeholder="Buscar por ID" aria-label="Search" id="buscarProducto">
+                    <button class="btn btn-outline-success my-2 my-sm-0" id="btnBuscarProductos">Buscar</button>
+                </div>
+                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modalProductos">
+                    Agregar
+                </button>
+            </nav>
 
 
             <div class="form-group">
 
 
-                <!-- Modal -->
+                <!-- Modal para agregar un nuevo producto -->
                 <div class="modal fade" id="modalProductos" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                     <div class="modal-dialog" role="document">
                         <div class="modal-content">
                             <div class="modal-header">
-                                <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+                                <h5 class="modal-title" id="exampleModalLabel">Agregar Producto</h5>
                                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                     <span aria-hidden="true">&times;</span>
                                 </button>
@@ -417,36 +421,101 @@
                             <div class="modal-body">
 
                                 <div class="form-group">
-                                    <label for="nombre">Nombre</label>
-                                    <input type="text" class="form-control" id="nombre" placeholder="Ingrese su nombre" required>
+                                    <label for="nombre">Nombre del Producto</label>
+                                    <input type="text" class="form-control" id="nombreProducto" placeholder="Ingrese el nombre del Producto" required>
 
                                 </div>
                                 <div class="form-group">
-                                    <label for="apellido">Password</label>
-                                    <input type="text" class="form-control" id="apellido" placeholder="Ingrese su apellido" required>
+                                    <label for="apellido">Duración</label>
+                                    <input type="number" class="form-control" id="duracionProducto" placeholder="Ingrese la Duración" required>
                                 </div>
                                 <div class="form-group">
-                                    <label for="fechaNacimiento">Fecha Nacimiento</label>
-                                    <input type="date" class="form-control" id="fechaNacimiento" required>
-                                </div>
-                                <div class="form-group">
-                                    <label class="form-check-label" for="exampleRadios1">
-                                        Genero
-                                    </label>
-                                    <select name="" id="genero" class="form-control" required>
-                                        <option value="hombre">Hombre</option>
-                                        <option value="mujer">Mujer</option>
-                                        <option value="indefinido">Indefinido</option>
+                                    <label for="fechaNacimiento">Categoria</label>
+                                    <select name="" id="categoriaProducto" class="form-control">
+                                        <option value="Undefined">Seleccione una Opción</option>
+                                        <option value="Categoría A1">Categoría A1</option>
+                                        <option value="Categoría A2">Categoría A2</option>
+                                        <option value="Categoría B1">Categoría B1</option>
+                                        <option value="Categoría B2">Categoría B2</option>
+                                        <option value="Categoría B3">Categoría B3</option>
+                                        <option value="Categoría C1">Categoría C1</option>
+                                        <option value="Categoría C2">Categoría C2</option>
+                                        <option value="Categoría C3">Categoría C3</option>
                                     </select>
+                                </div>
+                                <div class="form-group">
+                                    <label class="form-check-label" for="exampleRadios1">Precio</label>
+                                    <input type="number" class="form-control" id="precioProducto" placeholder="Ingrese el Precio" required>
+                                </div>
+                                <div class="form-group">
+                                    <label class="form-check-label" for="exampleRadios1">Numero de Clases</label>
+                                    <input type="number" class="form-control" id="clasesProducto" placeholder="Ingrese el Numero de Clases" required>
+                                </div>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+                                <button type="button" class="btn btn-primary" id="agregarProducto">Guardar</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
 
+                <!-- Modal para editar un producto -->
+                <div class="modal fade" id="modalEditProducto" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                    <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="exampleModalLabel">Editar Producto</h5>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                            <div class="modal-body">
+
+                                <div class="form-group" hidden>
+                                    <label for="nombre">ID del Producto</label>
+                                    <input type="number" class="form-control" id="idProductoAEditar" placeholder="Ingrese el nombre del Producto" required>
                                 </div>
 
+                                <div class="form-group">
+                                    <label for="nombre">Nombre del Producto</label>
+                                    <input type="text" class="form-control" id="nombreProductoAEditar" placeholder="Ingrese el nombre del Producto" required>
+                                </div>
 
+                                <div class="form-group">
+                                    <label for="apellido">Duración</label>
+                                    <input type="number" class="form-control" id="duracionProductoAEditar" placeholder="Ingrese la Duración" required>
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="fechaNacimiento">Categoria</label>
+                                    <select name="" id="categoriaProductoAEditar" class="form-control">
+                                        <option value="Undefined">Seleccione una Opción</option>
+                                        <option value="Categoría A1">Categoría A1</option>
+                                        <option value="Categoría A2">Categoría A2</option>
+                                        <option value="Categoría B1">Categoría B1</option>
+                                        <option value="Categoría B2">Categoría B2</option>
+                                        <option value="Categoría B3">Categoría B3</option>
+                                        <option value="Categoría C1">Categoría C1</option>
+                                        <option value="Categoría C2">Categoría C2</option>
+                                        <option value="Categoría C3">Categoría C3</option>
+                                    </select>
+                                </div>
+
+                                <div class="form-group">
+                                    <label class="form-check-label" for="exampleRadios1">Precio</label>
+                                    <input type="number" class="form-control" id="precioProductoAEditar" placeholder="Ingrese el Precio" required>
+                                </div>
+
+                                <div class="form-group">
+                                    <label class="form-check-label" for="exampleRadios1">Numero de Clases</label>
+                                    <input type="number" class="form-control" id="clasesProductoAEditar" placeholder="Ingrese el Numero de Clases" required>
+                                </div>
 
                             </div>
                             <div class="modal-footer">
                                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
-                                <button type="button" class="btn btn-primary" id="enviar">Guardar</button>
+                                <button type="button" class="btn btn-primary" id="editarProducto" data-dismiss="modal">Guardar Cambios</button>
                             </div>
                         </div>
                     </div>
@@ -454,10 +523,38 @@
 
             </div>
             <div class="my-auto">
-                <p class="text-justify">
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolor architecto corporis expedita, error explicabo distinctio ab
-                    vero doloremque ipsa cum perspiciatis iusto veniam quia tempora? Ea quasi voluptatem amet quas!
-                </p>
+                <div id="contenedorProductos">
+
+                </div>
+
+                <div class="btn-group">
+                    <button id="btnAtrasProductos" class="btn btn-secondary">
+                        <i class="fa fa-backward"></i> Volver Atras
+                    </button>
+                </div>
+            </div>
+
+            <!-- Validar Eliminar Productos -->
+            <div class="modal fade" id="validarEliminarProducto" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="exampleModalLabel">Confirmar la Eliminación</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            <p class="text-center">Esta Seguro?
+                                <span id="myIDProducto" hidden></span>
+                            </p>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-success" data-dismiss="modal" onclick="confirmarEliminarProducto(2)">NO</button>
+                            <button type="button" class="btn btn-danger" data-dismiss="modal" onclick="confirmarEliminarProducto(1)">SI</button>
+                        </div>
+                    </div>
+                </div>
             </div>
         </section>
         <!-- FIN DE LA SECCION DE PRODUCTOS -->
@@ -761,10 +858,13 @@
 
 <script src="includes/jquery-easing/jquery.easing.min.js"></script>
 <script src="vista/js/navbar.js"></script>
+<<<<<<< HEAD
+<script src="vista/js/profesores.js"></script>
+=======
+>>>>>>> 24e005d45cc5735a5c7ba4198f57312dca6c1c5d
 
 <script src="vista/js/profesores.js"></script>
 <script src="vista/js/estudiante.js"></script>
 <script src="vista/js/productos.js"></script>
-
 
 </html>
