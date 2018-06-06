@@ -181,22 +181,22 @@
 
 
         <section class="resume-section p-3 p-lg-5 d-flex flex-column" id="profesores">
-            <div class="row">
-                <div class="col-md-8">
-                    <h2 class="mb-5 my-titles">Profesores</h2>
-                </div>
-                <!-- Button trigger modal -->
-                <div class="col-md-4 botones-profesor">
-                    <div class="">
-                        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modalProfesores">
-                            Agregar
-                        </button>
-                        <button type="button" class="btn btn-success" data-toggle="modal" data-target="#modalProfesoresConsulta">
-                            Consultar
-                        </button>
-                    </div>
-                </div>
+            <div class="col-md-8">
+                <h2 class="mb-5 my-titles">Profesores</h2>
             </div>
+
+           
+            <!-- Button trigger modal -->
+            <nav class="navbar navbar-light bg-light">
+                <form class="form-inline">
+                    <input class="form-control mr-sm-2" type="search" placeholder="Buscar por cedula" aria-label="Search" id="buscarDocente">
+                    <button class="btn btn-outline-success my-2 my-sm-0" id="btnBuscarDocente">Buscar</button>
+                </form>
+                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modalProfesores">
+                    Agregar
+                </button>
+            </nav>
+            
 
             <div class="form-group">
 
@@ -240,27 +240,11 @@
                                     <label for="correoProfesor">Correo Electrónico</label>
                                     <input type="text" class="form-control" id="correoProfesor" placeholder="Ingrese su correo" required>
                                 </div>
-                                <div class="form-group">
-                                    <label class="form-check-label" for="categoriaProfesor">
-                                        Categoría
-                                    </label>
-                                    <select name="" id="categoriaProfesor" class="form-control" required>
-                                        <option value="categoria1">Categoria 1</option>
-                                        <option value="categoria2">Categoria 2</option>
-                                        <option value="categoria3">Categoria 3</option>
-                                    </select>
-                                </div>
+
                                 <div class="form-group">
                                     <label for="profesionProfesor">Profesión</label>
                                     <input type="text" class="form-control" id="profesionProfesor" placeholder="Ingrese su profesion" required>
                                 </div>
-                                <div class="form-group">
-                                    <label for="especialidadProfesor">Especialidad</label>
-                                    <input type="text" class="form-control" id="especialidadProfesor" placeholder="Ingrese su especialidad" required>
-                                </div>
-
-
-
                             </div>
                             <div class="modal-footer">
                                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
@@ -319,22 +303,8 @@
                                     <input type="email" class="form-control" id="correoProfesorEditar" placeholder="Ingrese su correo" required>
                                 </div>
                                 <div class="form-group">
-                                    <label class="form-check-label" for="categoriaProfesorEditar">
-                                        Categoría
-                                    </label>
-                                    <select name="" id="categoriaProfesorEditar" class="form-control" required>
-                                        <option value="categoria1">Categoria 1</option>
-                                        <option value="categoria2">Categoria 2</option>
-                                        <option value="categoria3">Categoria 3</option>
-                                    </select>
-                                </div>
-                                <div class="form-group">
                                     <label for="profesionProfesorEditar">Profesión</label>
                                     <input type="text" class="form-control" id="profesionProfesorEditar" placeholder="Ingrese su profesion" required>
-                                </div>
-                                <div class="form-group">
-                                    <label for="especialidadProfesorEditar">Especialidad</label>
-                                    <input type="text" class="form-control" id="especialidadProfesorEditar" placeholder="Ingrese su especialidad" required>
                                 </div>
                             </div>
                             <div class="modal-footer">
@@ -346,79 +316,7 @@
                 </div>
 
             </div>
-            <div class="form-group">
 
-                <!-- Modal Consultar-->
-                <div class="modal fade" id="modalProfesoresConsulta" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                    <div class="modal-dialog" role="document">
-                        <div class="modal-content">
-                            <div class="modal-header">
-                                <h5 class="modal-title" id="exampleModalLabel">Agregar un docente</h5>
-                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                    <span aria-hidden="true">&times;</span>
-                                </button>
-                            </div>
-                            <div class="modal-body">
-
-                                <div class="form-group">
-                                    <label for="nombreProfesor">Nombre</label>
-                                    <input type="text" class="form-control" id="nombreProfesor" placeholder="Ingrese su nombre" required>
-                                </div>
-                                <div class="form-group">
-                                    <label for="apellidoProfesor">Apellido</label>
-                                    <input type="text" class="form-control" id="apellidoProfesor" placeholder="Ingrese su apellido" required>
-                                </div>
-                                <div class="form-group">
-                                    <label for="cedulaProfesor">Cédula</label>
-                                    <input type="number" class="form-control" id="cedulaProfesor" placeholder="Ingrese su cédula" required>
-                                </div>
-                                <div class="form-group">
-                                    <label for="fechaNacimientoProfesor">Fecha Nacimiento</label>
-                                    <input type="date" class="form-control" id="fechaNacimientoProfesor" required>
-                                </div>
-                                <div class="form-group">
-                                    <label for="direccionProfesor">Dirección</label>
-                                    <input type="text" class="form-control" id="direccionProfesor" placeholder="Ingrese su dirección" required>
-                                </div>
-                                <div class="form-group">
-                                    <label for="telefonoProfesor">Teléfono</label>
-                                    <input type="text" class="form-control" id="telefonoProfesor" placeholder="Ingrese su telefono" required>
-                                </div>
-                                <div class="form-group">
-                                    <label for="correoProfesor">Correo Electrónico</label>
-                                    <input type="text" class="form-control" id="correoProfesor" placeholder="Ingrese su correo" required>
-                                </div>
-                                <div class="form-group">
-                                    <label class="form-check-label" for="categoriaProfesor">
-                                        Categoría
-                                    </label>
-                                    <select name="" id="categoriaProfesor" class="form-control" required>
-                                        <option value="categoria1">Categoria 1</option>
-                                        <option value="categoria2">Categoria 2</option>
-                                        <option value="categoria3">Categoria 3</option>
-                                    </select>
-                                </div>
-                                <div class="form-group">
-                                    <label for="profesionProfesor">Profesión</label>
-                                    <input type="text" class="form-control" id="profesionProfesor" placeholder="Ingrese su profesion" required>
-                                </div>
-                                <div class="form-group">
-                                    <label for="especialidadProfesor">Especialidad</label>
-                                    <input type="text" class="form-control" id="especialidadProfesor" placeholder="Ingrese su especialidad" required>
-                                </div>
-
-
-
-                            </div>
-                            <div class="modal-footer">
-                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
-                                <button type="button" class="btn btn-primary" id="add">Guardar</button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-            </div>
         </section>
 
         <!-- FIN DE LA SECCIÓN DE PROFESORES -->
@@ -805,7 +703,10 @@
 
 <script src="includes/jquery-easing/jquery.easing.min.js"></script>
 <script src="vista/js/navbar.js"></script>
-<!--<script src="vista/js/profesores.js"></script> -->
+
+<script src="vista/js/profesores.js"></script> 
 <script src="vista/js/estudiante.js"></script>
+<script src="vista/js/productos.js"></script>
+
 
 </html>
