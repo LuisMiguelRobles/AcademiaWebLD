@@ -13,6 +13,7 @@ $(function () {
     $('#agregarProducto').click(function () {
         agregarProducto(); //lamada al metodo que agrega un registro con una solicitud al controlador
         limpiarCamposAgregarProductos(); //Una vez agrega, se limpian los campos del Formulario de Agregar Producto
+        $('#modalProductos').modal('toggle'); //Cierra el modal despues de agregar
         $('#agregarProducto').prop('disabled' , true); //Al agregar me deshabilita el boton para evitar problemas con campos vacios
     });
 
