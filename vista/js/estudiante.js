@@ -13,7 +13,7 @@ $(function () {
      */
     $("#agregarEstudiante").click(function () {
         agregarEstudiante();
-        
+        $("#modalEstudiantes").modal('toggle');
         limpiarAgregarEstudiante();
         $("#agregarEstudiante").prop('disabled',true);
     })
@@ -23,6 +23,7 @@ $(function () {
      */
     $("#editarEstudiante").click(function () {
         editarEstudiante();
+        $("#modalEstudiantesEditar").modal('toggle');
         limpiarEditarEstudiante();
         $("#editarrEstudiante").prop('disabled',true);
     });
@@ -31,9 +32,8 @@ $(function () {
      * Llamado de la obtenerPorCedula cuando el boton buscar es clickeado
      */
     $("#btnBuscarEstudiante").click(function () {
-        obtenerPorCedula();
-        console.log($("#buscarEstudiante").val());
-        $("#buscarEstudianteEditar").val("");
+        obtenerPorCedula();        
+        $("#buscarEstudiante").val("");
 
     });
 
