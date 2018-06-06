@@ -100,7 +100,7 @@ class Profesor{
                 WHERE cedulaprofesor = ?;";   
         $rs = $conexion->getPDO()->prepare($sql);
         $rs->execute(array( $nombreprofesor, $apellidoprofesor, $fechanacimiento,
-            $direccionprofesor, $telefonoprofesor, $correoprofesor, $profesionprofesor, $cedulaprofesor,));
+            $direccionprofesor, $telefonoprofesor, $correoprofesor, $profesionprofesor, $cedulaprofesor));
         echo $conexion->getEstado();
     }
 

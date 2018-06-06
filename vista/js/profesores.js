@@ -110,13 +110,15 @@ function agregarDocente()  {
         console.log(data);
         obtenerProfesores();
         
+    }).fail(function(){
+        alert("Ha ocurrido un error");
     })
 }
 
 let llenarCamposEditarProfesores = (cedulaAEditar) => {
 
     for (const profesor of profesores) {
-        if (profesor.cedula == cedulaAEditar) {
+        if (profesor.cedulaprofesor == cedulaAEditar) {
             $('#cedulaProfesorEditar').val(profesor.cedulaprofesor);
             $('#nombreProfesorEditar').val(profesor.nombreprofesor);
             $('#apellidoProfesorEditar').val(profesor.apellidoprofesor);
@@ -124,28 +126,42 @@ let llenarCamposEditarProfesores = (cedulaAEditar) => {
             $('#direccionProfesorEditar').val(profesor.direccionprofesor);
             $('#telefonoProfesorEditar').val(profesor.telefonoprofesor);
             $('#correoProfesorEditar').val(profesor.correoprofesor);
-            $('#profesionProfesor').val(profesor.profesionprofesor);
+            $('#profesionProfesorEditar').val(profesor.profesionprofesor);
 
             break;
         }
     }
 }
 
-// let editar = () => {
-//     let obj = {};
-//     obj.nombre = $('#nombreProfesorEditar').val();
-//     obj.apellido = $('#apellidoProfesorEditar').val();
-//     obj.cedula = $('#cedulaProfesorEditar').val();
+function editarDocente() {
 
-//     for (let i = 0; i < profesores.length; i++) {
-//         if (profesores[i].cedula == cedulaEdit) {
-//             profesores[i] = obj;
-//             break;
-//         }
-//     }
+   $.ajax({
 
-//     renderizar(profesores);
-// }
+        "url": "controlador/fachada.php",
+        "type": "POST",
+        "data": {
+            clase :'Profesor',
+            oper: 'edit',
+            cedulaprofesor : $('#cedulaProfesorEditar').val(),
+            nombreprofesor  : $('#nombreProfesorEditar').val(),
+            apellidoprofesor : $('#apellidoProfesorEditar').val(),
+            fechanacimiento : $('#fechaNacimientoProfesorEditar').val(),
+            direccionprofesor : $('#direccionProfesorEditar').val(),
+            telefonoprofesor : $('#telefonoProfesorEditar').val(),
+            correoprofesor : $('#correoProfesorEditar').val(),
+            profesionprofesor : $('#profesionProfesorEditar').val()
+        },
+        "dataType": "JSON"
+    }).done(function(data){
+
+        alert("entra")
+        console.log(data);
+        obtenerProfesores();
+        
+    }).fail(function(error){
+        alert("no entra :(");
+    })
+}
 
 
 // function eliminar(cedula) {
