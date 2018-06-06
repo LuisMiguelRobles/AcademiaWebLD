@@ -61,14 +61,14 @@ function renderizar(data) {
     tablaEstudiantes = `<table class="table table-bordered ">
                 <thead class="thead-dark">
                     <tr>
-                        <td>Documento</td>
-                        <td>Nombre</td>
-                        <td>Apellido</td>
-                        <td>Fecha de Nacimiento</td>
-                        <td>Dirección</td>
-                        <td>Telefono</td>
-                        <td>Correo</td>
-                        <td>Opciones</td>
+                        <th>Documento</th>
+                        <th>Nombre</th>
+                        <th>Apellido</th>
+                        <th>Fecha de Nacimiento</th>
+                        <th>Dirección</th>
+                        <th>Telefono</th>
+                        <th>Correo</th>
+                        <th>Opciones</th>
                     </tr>
                 </thead>`;
 
