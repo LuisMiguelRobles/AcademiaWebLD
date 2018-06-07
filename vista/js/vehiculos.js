@@ -16,6 +16,8 @@ $(function () {
     $('#addVehiculo').click(function() {
         agregarVehiculo();
         $('#modalVehiculo').modal('toggle');
+        limpiarCampos();
+        //$("#addVehiculo").prop('disabled',true);
     });
 
     $('#editarVehiculo').click(function() {
@@ -38,6 +40,7 @@ $(function () {
 
     $('#editarVehiculoConfirmar').click(function(){
         editarVehiculo();
+        $('#modalEditVehiculo').modal('toggle');
     })
 });
 
@@ -194,4 +197,9 @@ let llenarCamposVehiculos = (idAEditar) => {
             break;
         }
     }
+}
+
+let limpiarCampos = () => {
+    $('#placaVehiculo').val('');
+    $('#modeloVehiculo').val('');
 }
