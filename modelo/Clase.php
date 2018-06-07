@@ -67,10 +67,10 @@ class Clase
 
        function delete($param) {
         extract($param);
-        $sql = " DELETE FROM producto
-                     WHERE idproducto= ?;";   
+        $sql = " DELETE FROM clase
+                     WHERE id= ?;";   
         $rs = $conexion->getPDO()->prepare($sql);
-        $rs->execute(array($idproducto));
+        $rs->execute(array($id));
         echo $conexion->getEstado();
     }
 }
