@@ -612,6 +612,11 @@
         </section>
         <!-- FIN DE LA SECCION DE PRODUCTOS -->
 
+
+
+
+
+
         <!-- SECCION DE VEHICULOS -->
         <section class="resume-section p-3 p-lg-5 d-flex flex-column" id="vehiculos">
                 <div class="col-md-9">
@@ -644,11 +649,6 @@
     
                                 <div class="modal-body">
                                     <div class="form-group">
-                                        <label for="idVehiculo">ID</label>
-                                        <input type="text" class="form-control" id="idVehiculo" placeholder="Ingrese el id" required>
-                                    </div>
-    
-                                    <div class="form-group">
                                         <label for="placaVehiculo">Placa</label>
                                         <input type="text" class="form-control" id="placaVehiculo" placeholder="Ingrese la placa" required>
                                     </div>
@@ -680,10 +680,6 @@
     
                                 <div class="modal-body">
                                     <div class="form-group">
-                                        <label for="idVehiculoEditar">ID</label>
-                                        <input type="text" class="form-control" id="idVehiculoAEditar" placeholder="Ingrese el id" required>
-                                    </div>
-                                    <div class="form-group">
                                         <label for="placaVehiculoAEditar">Placa</label>
                                         <input type="text" class="form-control" id="placaVehiculoAEditar" placeholder="Ingrese la placa" required>
                                     </div>
@@ -704,7 +700,7 @@
                 </div>
     
                 <!-- Validar Eliminar Vehiculo -->
-                <div class="modal fade" id="validarEliminarVehiculo" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal fade" id="modalEliminarVehiculo" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                     <div class="modal-dialog" role="document">
                         <div class="modal-content">
                             <div class="modal-header">
@@ -721,8 +717,8 @@
                             </div>
     
                             <div class="modal-footer">
-                                <button type="button" class="btn btn-success" data-dismiss="modal" onclick="confirmarEliminarVehiculo(2)">NO</button>
-                                <button type="button" class="btn btn-danger" data-dismiss="modal" onclick="confirmarEliminarVehiculo(1)">SI</button>
+                                <button type="button" class="btn btn-success" data-dismiss="modal" onclick="">NO</button>
+                                <button type="button" class="btn btn-danger" data-dismiss="modal" id="confirmacionEliminacionVehiculo">SI</button>
                             </div>
                         </div>
                     </div>

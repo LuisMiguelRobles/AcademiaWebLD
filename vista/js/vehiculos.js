@@ -21,6 +21,11 @@ $(function () {
     $('#editarVehiculo').click(function() {
         editarVehiculo();
     });
+
+    $('#confirmacionEliminacionVehiculo').click(function() {
+        confirmarEliminarVehiculo();
+        $('#modalEliminarVehiculo').modal('toggle');
+    });
 });
 
 let obtenerVehiculos = () => {
@@ -65,8 +70,8 @@ function renderizarTablaVehiculos(data) {
                 <td>${value.placa}</td>
                 <td>${value.modelo}</td>
                 <td>
-                    <button class="btn btn-info" onclick="editarVehiculo(${value.idvehiculo})" data-toggle="modal" data-target="#modalEditVehiculo">Editar</button>
-                    <button class="btn btn-danger" onclick="eliminarVehiculo(${value.idvehiculo})" data-toggle="modal" data-target="validarEliminarVehiculo">Eliminar</button>
+                    <button class="btn btn-info" data-toggle="modal" data-target="#modalEditVehiculo" onclick="editarVehiculo(${value.idvehiculo})">Editar</button>
+                    <button class="btn btn-danger" data-toggle="modal" data-target="#modalEliminarVehiculo" onclick="eliminarVehiculo(${value.idvehiculo})">Eliminar</button>
                 </td>
             </tr>`;
     });
@@ -100,14 +105,14 @@ function eliminarVehiculo(eliminarIDVehiculo) {
 }
 
 function confirmarEliminarVehiculo() {
-    let eliminarVehiculo = parseInt($("eliminarAVehiculo").text());
+    let vehiculosEliminar = parseInt($("#eliminarAVehiculo").text());
     $.ajax({
         "url":urlVehiculos,
         "type": "POST",
         "data": {
             clase: "Vehiculo",
             oper: "delete",
-            idvehiculo: eliminarVehiculo
+            idvehiculo: vehiculosEliminar
         }
     }).done((data) => {
         obtenerVehiculos();
@@ -155,7 +160,14 @@ function editarVehiculo() {
         "data": {
             clase: 'Vehiculo',
             oper: 'edit',
-            idvehiculo : $
-        }
+            placa: $('#placaVehiculoAEditar').val(),
+            modelo: $('#modeloVehiculoAEditar').val()
+        },
+        "dataType": "JSON"
+    }).done(function(data) {
+        console.log(data);
+        obtenerVehiculos();
+    }).fail(function(error) {
+        alert("Se presento un error");
     })
 }
