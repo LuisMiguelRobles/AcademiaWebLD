@@ -145,6 +145,7 @@ function agregarVentas() {
             oper: "add", 
             fecha: $("#horarios").val(),
             hora: "00:00",
+            estudiante: $("#seleccionarEstudiante").val(),
             profesor: $("#seleccionarProfesor").val(),
             vehiculo: $("#seleccionarVehiculo").val(),
             producto: $("#seleccionarProductoventas").val(),
