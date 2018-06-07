@@ -614,76 +614,133 @@
 
         <!-- SECCION DE VEHICULOS -->
         <section class="resume-section p-3 p-lg-5 d-flex flex-column" id="vehiculos">
-            <div class="row">
                 <div class="col-md-9">
-                    <h2 class="mb-5 my-titles">Vehiculos</h2>
-                </div>
-                <!-- Button trigger modal -->
-                <div class="col-md-3">
-                    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modalVehiculos">
+                     <h2 class="mb-5 my-titles">Vehiculos</h2>
+                 </div>
+    
+                 <!-- Button trigger modal -->
+                <nav class="navbar navbar-light bg-light">
+                    <div class="form-inline">
+                        <input class="form-control mr-sm-2" type="search" placeholder="Buscar por placa" aria-label="Search" id="buscarVehiculo">
+                        <button class="btn btn-outline-success my-2 my-sm-0" id="btnBuscarVehiculos">Buscar</button>
+                    </div>
+                    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modalVehiculo">
                         Agregar
                     </button>
-                </div>
-            </div>
-
-            <div class="form-group">
-
-                <!-- Modal -->
-                <div class="modal fade" id="modalVehiculos" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                    <div class="modal-dialog" role="document">
-                        <div class="modal-content">
-                            <div class="modal-header">
-                                <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
-                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                    <span aria-hidden="true">&times;</span>
-                                </button>
+                </nav>
+                
+                <div class="form-group">
+    
+                    <!-- Modal Agregar Vehiculo-->
+                    <div class="modal fade" id="modalVehiculo" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                        <div class="modal-dialog" role="document">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="exampleModalLabel">Agregar un Vehiculo</h5>
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+    
+                                <div class="modal-body">
+                                    <div class="form-group">
+                                        <label for="idVehiculo">ID</label>
+                                        <input type="text" class="form-control" id="idVehiculo" placeholder="Ingrese el id" required>
+                                    </div>
+    
+                                    <div class="form-group">
+                                        <label for="placaVehiculo">Placa</label>
+                                        <input type="text" class="form-control" id="placaVehiculo" placeholder="Ingrese la placa" required>
+                                    </div>
+    
+                                    <div class="form-group">
+                                        <label for="modeloVehiculo">Modelo</label>
+                                        <input type="text" class="form-control" id="modeloVehiculo" placeholder="Ingrese el modelo" required>
+                                    </div>
+                                </div>
+    
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+                                    <button type="button" class="btn btn-primary" id="addVehiculo">Guardar</button>
+                                </div>
                             </div>
-                            <div class="modal-body">
-
-                                <div class="form-group">
-                                    <label for="nombre">Nombre</label>
-                                    <input type="text" class="form-control" id="nombre" placeholder="Ingrese su nombre" required>
-
+                        </div>
+                    </div>
+    
+                    <!-- Modal Editar Vehiculo-->
+                    <div class="modal fade" id="modalEditVehiculo" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                        <div class="modal-dialog" role="document">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="exampleModalLabel">Editar un Vehiculo</h5>
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
                                 </div>
-                                <div class="form-group">
-                                    <label for="apellido">Password</label>
-                                    <input type="text" class="form-control" id="apellido" placeholder="Ingrese su apellido" required>
+    
+                                <div class="modal-body">
+                                    <div class="form-group">
+                                        <label for="idVehiculoEditar">ID</label>
+                                        <input type="text" class="form-control" id="idVehiculoAEditar" placeholder="Ingrese el id" required>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="placaVehiculoAEditar">Placa</label>
+                                        <input type="text" class="form-control" id="placaVehiculoAEditar" placeholder="Ingrese la placa" required>
+                                    </div>
+    
+                                    <div class="form-group">
+                                        <label for="modeloVehiculoAEditar">Modelo</label>
+                                        <input type="text" class="form-control" id="modeloVehiculoAEditar" placeholder="Ingrese el modelo" required>
+                                    </div>
                                 </div>
-                                <div class="form-group">
-                                    <label for="fechaNacimiento">Fecha Nacimiento</label>
-                                    <input type="date" class="form-control" id="fechaNacimiento" required>
+    
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+                                    <button type="button" class="btn btn-primary" id="editarVehiculo">Editar</button>
                                 </div>
-                                <div class="form-group">
-                                    <label class="form-check-label" for="exampleRadios1">
-                                        Genero
-                                    </label>
-                                    <select name="" id="genero" class="form-control" required>
-                                        <option value="hombre">Hombre</option>
-                                        <option value="mujer">Mujer</option>
-                                        <option value="indefinido">Indefinido</option>
-                                    </select>
-
-                                </div>
-
-
-
-                            </div>
-                            <div class="modal-footer">
-                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
-                                <button type="button" class="btn btn-primary" id="enviar">Guardar</button>
                             </div>
                         </div>
                     </div>
                 </div>
-
-            </div>
-            <div class="my-auto">
-                <p class="text-justify">
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolor architecto corporis expedita, error explicabo distinctio ab
-                    vero doloremque ipsa cum perspiciatis iusto veniam quia tempora? Ea quasi voluptatem amet quas!
-                </p>
-            </div>
-        </section>
+    
+                <!-- Validar Eliminar Vehiculo -->
+                <div class="modal fade" id="validarEliminarVehiculo" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                    <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="exampleModalLabel">Confirmar la Eliminación</h5>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+    
+                            <div class="modal-body">
+                                <p class="text-center">Esta Seguro?
+                                <span id="eliminarAVehiculo" hidden></span>
+                                </p>
+                            </div>
+    
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-success" data-dismiss="modal" onclick="confirmarEliminarVehiculo(2)">NO</button>
+                                <button type="button" class="btn btn-danger" data-dismiss="modal" onclick="confirmarEliminarVehiculo(1)">SI</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+    
+                <div id="tablaVehiculo">
+                    
+                    <div id="contenedorVehiculos">
+    
+                    </div>
+                        
+                    <div class="btn-group">
+                        <button id="btnAtrasVehiculos" class="btn btn-secondary">
+                            <i class="fa fa-backward"></i> Atras
+                        </button>
+                    </div>
+                </div>
+            </section>
         <!-- FIN SECCION DE VEHICULOS -->
 
         <!-- SECCION DE VENTAS -->
@@ -1011,6 +1068,7 @@
 <script src="vista/js/estudiante.js"></script>
 <script src="vista/js/productos.js"></script>
 <script src="vista/js/administrativos.js"></script>
+<script src="vista/js/vehiculos.js"></script>
 
 <script src="vista/js/venta.js"></script>
 

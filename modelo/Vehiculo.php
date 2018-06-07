@@ -8,10 +8,8 @@ class Vehiculo{
     */
     function select($param) {
         extract($param);
-        $where = $conexion->getWhere($param);
-
-        $sql = "SELECT idvehiculo, placa, modelo
-                FROM vehiculo;";
+       $sql = "SELECT idvehiculo, placa, modelo
+                FROM vehiculo ;";
        $rs = $conexion->getPDO()->prepare($sql);
         if ($rs->execute(array())) {
             if ($filas = $rs->fetchAll(PDO::FETCH_ASSOC)) {
