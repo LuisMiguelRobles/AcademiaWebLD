@@ -10,10 +10,10 @@ class Vehiculo{
         extract($param);
         $where = $conexion->getWhere($param);
 
-        $sql = "SELECT idvehiculo, placa, modelo,
-                FROM vehiculo where idvehiculo = ?;";
+        $sql = "SELECT idvehiculo, placa, modelo
+                FROM vehiculo;";
        $rs = $conexion->getPDO()->prepare($sql);
-        if ($rs->execute(array($idvehiculo))) {
+        if ($rs->execute(array())) {
             if ($filas = $rs->fetchAll(PDO::FETCH_ASSOC)) {
                 foreach ($filas as $fila) {
 

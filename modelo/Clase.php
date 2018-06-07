@@ -49,6 +49,7 @@ class Clase
         $rs = $conexion->getPDO()->prepare($sql);
         $rs->execute(array($fecha, $hora, $estudiante, $profesor, $vehiculo, $producto));
         echo $conexion->getEstado();
+        
     }
 
   
