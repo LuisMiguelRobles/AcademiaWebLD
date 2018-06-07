@@ -42,7 +42,7 @@
                     <a class="nav-link js-scroll-trigger" href="#vehiculos">Vehiculos</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link js-scroll-trigger" href="#venta">Venta</a>
+                    <a class="nav-link js-scroll-trigger" href="#venta">Clases</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link js-scroll-trigger" href="#users">Usuarios</a>
@@ -746,18 +746,21 @@
         <!-- SECCION DE VENTAS -->
         <!-- Brahian -->
         <section class="resume-section p-3 p-lg-5 d-flex flex-column" id="venta">
-            <div class="row">
-                <div class="col-md-9">
-                    <h2 class="mb-5 my-titles">Venta</h2>
-                </div>
-                <!-- Button trigger modal -->
-                <div class="col-md-3">
-                    <br>
-                    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modalVentas">
-                        Agregar
-                    </button>
-                </div>
+            <div class="col-md-8">
+                <h2 class="mb-5 my-titles">Clases</h2>
             </div>
+
+
+            <!-- Aqui esta el input para buscar por cedula con su respectivo boton y el boton para abrir el modal agregar -->
+            <nav class="navbar navbar-light bg-light">
+                <div class="form-inline">
+                    <input class="form-control mr-sm-2" type="search" placeholder="Buscar por ID de clases" aria-label="Search" id="buscarclases">
+                    <button class="btn btn-outline-success my-2 my-sm-0" id="btnBuscarclases">Buscar</button>
+                </div>
+                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modalVentas">
+                    Agregar
+                </button>
+            </nav>
 
             <div class="form-group">
 
@@ -817,6 +820,94 @@
                 <div id="tablaventas">
 
                 </div>
+                <!-- Este boton solo se muestra cuando se realiza una busqueda Personalizada -->
+                <div class="btn-group">
+                    <button id="btnAtrasclases" class="btn btn-secondary">
+                        <i class="fa fa-backward"></i> Volver Atras
+                    </button>
+                </div>
+                <!-- Modal editar -->
+                <div class="modal fade" id="modaleditarVentas" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                    <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="exampleModalLabel">Seleccionar clases</h5>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                            <div class="modal-body">
+                                <div class="form-group" hidden>
+                                    <label for="fechas">id</label>
+                                    <br>
+                                    <input type="number" id="ideditar" disabled class="form-control">
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="estudiante">Seleccione estudiante</label>
+                                    <br>
+                                    <select id="seleccionarEstudianteeditar" class="form-control">
+                                        <option></option>
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                    <label for="profesor">Seleccione profesor</label>
+                                    <br>
+                                    <select id="seleccionarProfesoreditar" class="form-control">
+                                        <option></option>
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                    <label for="vehiculo">Seleccione vehiculo</label>
+                                    <br>
+                                    <select id="seleccionarVehiculoeditar" class="form-control">
+                                        <option></option>
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                    <label for="fechas">Seleccione horario</label>
+                                    <br>
+                                    <input type="date" id="horarioseditar" class="form-control">
+                                </div>
+                                <div class="form-group">
+                                    <label for="producto">Seleccione producto</label>
+                                    <br>
+                                    <select id="seleccionarProductoventaseditar" class="form-control">
+                                        <option></option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+                                <button type="button" class="btn btn-primary" id="editarclase">Guardar</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            <!-- Validar Eliminar clases -->
+            <div class="modal fade" id="validarEliminarclases" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+                aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="exampleModalLabel">Confirmar la Eliminación</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            <p class="text-center">Esta Seguro?
+                                <span id="myIDclases" hidden></span>
+                            </p>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-success" data-dismiss="modal">NO</button>
+                            <button type="button" class="btn btn-danger" data-dismiss="modal" onclick="confirmarEliminarclases()">SI</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
             </div>
         </section>
         <!-- FIN SECCION DE VENTAS -->
