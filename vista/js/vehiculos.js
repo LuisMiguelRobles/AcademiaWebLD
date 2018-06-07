@@ -22,10 +22,23 @@ $(function () {
         editarVehiculo();
     });
 
+    $('#btnBuscarVehiculos').click(function() {
+        buscarVehiculo();
+    });
+
+    $('#btnAtrasVehiculos').click(function(){
+        obtenerVehiculos();
+        $('#btnAtrasVehiculos').fadeOut();
+    })
+
     $('#confirmacionEliminacionVehiculo').click(function() {
         confirmarEliminarVehiculo();
         $('#modalEliminarVehiculo').modal('toggle');
     });
+
+    $('#editarVehiculoConfirmar').click(function(){
+        editarVehiculo();
+    })
 });
 
 let obtenerVehiculos = () => {
@@ -70,7 +83,7 @@ function renderizarTablaVehiculos(data) {
                 <td>${value.placa}</td>
                 <td>${value.modelo}</td>
                 <td>
-                    <button class="btn btn-info" data-toggle="modal" data-target="#modalEditVehiculo" onclick="editarVehiculo(${value.idvehiculo})">Editar</button>
+                    <button class="btn btn-info" data-toggle="modal" data-target="#modalEditVehiculo" onclick="llenarCamposVehiculos(${value.idvehiculo})">Editar</button>
                     <button class="btn btn-danger" data-toggle="modal" data-target="#modalEliminarVehiculo" onclick="eliminarVehiculo(${value.idvehiculo})">Eliminar</button>
                 </td>
             </tr>`;
@@ -131,7 +144,7 @@ function buscarVehiculo() {
             "data": {
                 clase: "Vehiculo",
                 oper: 'select1',
-                idvehiculo: buscarVehiculo
+                placa: buscarVehiculo
             },
             "dataType": "JSON"
         }).done(function (data) {
@@ -143,7 +156,7 @@ function buscarVehiculo() {
             } else {
                 $('#contenedorVehiculos').html('<div class="alert alert-danger">Nada que mostrar</div>');
             }
-            $('btnAtrasVehiculos').fadeIn();
+            $('#btnAtrasVehiculos').fadeIn();
         }).fail(function (error) {
             alert("No hay respuesta del servidor" + error);
             console.log(error);
@@ -170,4 +183,15 @@ function editarVehiculo() {
     }).fail(function(error) {
         alert("Se presento un error");
     })
+}
+
+let llenarCamposVehiculos = (idAEditar) => {
+
+    for (const auto of vehiculos) {
+        if (auto.idvehiculo == idAEditar) {
+            $('#placaVehiculoAEditar').val(auto.placa);
+            $('#modeloVehiculoAEditar').val(auto.modelo);
+            break;
+        }
+    }
 }

@@ -23,6 +23,30 @@ class Vehiculo{
         echo json_encode(($array));
     }
 
+
+     /*
+        PARA ESTE METODO SE DEBE ENVIAR UN DATA CON LOS SIGUIENTES NOMBRE 
+        idvehiculo
+        
+
+    */
+    function select1($param) {
+        extract($param);
+       $sql = "SELECT idvehiculo, placa, modelo
+                FROM vehiculo where placa = ? ;";
+       $rs = $conexion->getPDO()->prepare($sql);
+        if ($rs->execute(array($placa))) {
+            if ($filas = $rs->fetchAll(PDO::FETCH_ASSOC)) {
+                foreach ($filas as $fila) {
+
+                    $array[] = $fila;
+                }
+            }
+        }
+
+        echo json_encode(($array));
+    }
+
     /*
         PARA ESTE METODO SE DEBE ENVIAR UN DATA CON LOS SIGUIENTES NOMBRE 
         placa
@@ -67,9 +91,9 @@ class Vehiculo{
        function delete($param) {
         extract($param);
         $sql = " DELETE FROM vehiculo
-                     WHERE placa= ?;";   
+                     WHERE idvehiculo= ?;";   
         $rs = $conexion->getPDO()->prepare($sql);
-        $rs->execute(array($placa));
+        $rs->execute(array($idvehiculo));
         echo $conexion->getEstado();
     }
 }
