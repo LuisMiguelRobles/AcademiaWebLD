@@ -2,7 +2,6 @@
     display: flex;
 }
 
-
 /* NO MODIFICAR. ESTOS ESTILOS HACEN LA VISTA Y SEPARACION DE LAS SECCIONES */
 
 body {
@@ -141,24 +140,22 @@ section.resume-section .resume-item .resume-date {
 }
 
 @media (min-width: 600px) and (max-width: 991px) {
-    section > .my-auto > .my-name {
+    section>.my-auto>.my-name {
         font-size: 4rem;
         margin-bottom: 2px;
     }
-
-    section > .my-auto > .my-titles {
+    section>.my-auto>.my-titles {
         font-size: 3rem;
         margin-bottom: 2px;
     }
 }
 
 @media (min-width: 300px) and (max-width: 600px) {
-    section > .my-auto > .my-name {
+    section>.my-auto>.my-name {
         font-size: 2.5rem;
         margin-bottom: 2px;
     }
-
-    section > .my-auto > .my-titles {
+    section>.my-auto>.my-titles {
         font-size: 2.5rem;
         margin-bottom: 2px;
         text-align: center;
@@ -166,13 +163,12 @@ section.resume-section .resume-item .resume-date {
 }
 
 @media (min-width: 100px) and (max-width: 300px) {
-    section > .my-auto > .my-name,
+    section>.my-auto>.my-name,
     .my-titles {
         font-size: 2rem;
         margin-bottom: 2px;
     }
-
-    section > .my-auto > .my-titles {
+    section>.my-auto>.my-titles {
         font-size: 2rem;
         margin-bottom: 2px;
         text-align: center;
@@ -199,14 +195,18 @@ a:active {
 
 /* FIN DE LOS ESTILOS OBLIGATORIOS */
 
-#btnAtrasProductos{
+#btnAtrasProductos {
     display: none;
 }
 
-#btnAtrasEstudiante{
+#btnAtrasEstudiante {
     display: none;
 }
 
-#btnAtrasProfesor{
+#btnAtrasProfesor {
+    display: none;
+}
+
+#btnAtrasAdmin {
     display: none;
 }

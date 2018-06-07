@@ -9,7 +9,7 @@ class administrativos {
         extract($param);
         $where = $conexion->getWhere($param);
         $sql = 'SELECT cedulaadministrativo, emailadministrativo, date, password
-						FROM "Administrativos" ;';
+						FROM administrativos ;';
        $rs = $conexion->getPDO()->prepare($sql);
         if ($rs->execute(array())) {
             if ($filas = $rs->fetchAll(PDO::FETCH_ASSOC)) {
