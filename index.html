@@ -65,7 +65,7 @@
                 <h1 class="my-name col-12">Academia automovilistica lord driver</h1>
 
                 <div class="">
-                    
+
                 </div>
                 <ul class="list-inline list-social-icons mb-0">
                     <li class="list-inline-item">
@@ -100,6 +100,30 @@
                 </button>
             </nav>
 
+
+            <!-- Validar Eliminar Estudiante -->
+            <div class="modal fade" id="validarEliminarEstudiante" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="exampleModalLabel">Confirmar la Eliminación</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            <p class="text-center">¿Está seguro de eliminar este Estudiante?
+                                <span id="cedulaEstudianteAEliminar" hidden></span>
+                            </p>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-success" data-dismiss="modal">NO</button>
+                            <button type="button" class="btn btn-danger" data-dismiss="modal" id="confirmarEliminarEstudiante">SI</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
             <div class="form-group">
 
                 <!-- Modal Agregar Estudiante -->
@@ -121,7 +145,7 @@
                                     </div>
                                     <div class="form-group">
                                         <label for="apellido">Nombre</label>
-                                        <input type="text" class="form-control" id="nombreEstudiante" placeholder="Ingrese su Nombre"  minlength="3" required>
+                                        <input type="text" class="form-control" id="nombreEstudiante" placeholder="Ingrese su Nombre" minlength="3" required>
                                     </div>
                                     <div class="form-group">
                                         <label for="fechaNacimiento">Apellido</label>
@@ -147,7 +171,7 @@
                                         <input type="email" class="form-control" id="correo" placeholder="Ingrese su Correo" required>
                                     </div>
 
-                                    </form>
+                                </form>
 
 
                             </div>
@@ -259,8 +283,8 @@
                 </button>
             </nav>
 
-             <!-- Validar Eliminar Profesor -->
-             <div class="modal fade" id="validarEliminarProfesor" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <!-- Validar Eliminar Profesor -->
+            <div class="modal fade" id="validarEliminarProfesor" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                 <div class="modal-dialog" role="document">
                     <div class="modal-content">
                         <div class="modal-header">
@@ -673,13 +697,14 @@
                     <h2 class="mb-5 my-titles">Venta</h2>
                 </div>
                 <!-- Button trigger modal -->
-                <div class="col-md-3"><br>
+                <div class="col-md-3">
+                    <br>
                     <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modalVentas">
                         Agregar
                     </button>
                 </div>
             </div>
-                
+
             <div class="form-group">
 
                 <!-- Modal -->
@@ -695,29 +720,34 @@
                             <div class="modal-body">
 
                                 <div class="form-group">
-                                    <label for="estudiante">Seleccione estudiante</label><br>
+                                    <label for="estudiante">Seleccione estudiante</label>
+                                    <br>
                                     <select id="seleccionarEstudiante" class="form-control">
                                         <option></option>
                                     </select>
                                 </div>
                                 <div class="form-group">
-                                    <label for="profesor">Seleccione profesor</label><br>
+                                    <label for="profesor">Seleccione profesor</label>
+                                    <br>
                                     <select id="seleccionarProfesor" class="form-control">
                                         <option></option>
                                     </select>
                                 </div>
                                 <div class="form-group">
-                                    <label for="vehiculo">Seleccione vehiculo</label><br>
+                                    <label for="vehiculo">Seleccione vehiculo</label>
+                                    <br>
                                     <select id="seleccionarVehiculo" class="form-control">
                                         <option></option>
                                     </select>
                                 </div>
                                 <div class="form-group">
-                                <label for="fechas">Seleccione horario</label><br>
-                                        <input type="date" id="horarios" class="form-control">
+                                    <label for="fechas">Seleccione horario</label>
+                                    <br>
+                                    <input type="date" id="horarios" class="form-control">
                                 </div>
                                 <div class="form-group">
-                                    <label for="producto">Seleccione producto</label><br>
+                                    <label for="producto">Seleccione producto</label>
+                                    <br>
                                     <select id="seleccionarProductoventas" class="form-control">
                                         <option></option>
                                     </select>
@@ -731,7 +761,7 @@
                     </div>
                 </div>
                 <div id="tablaventas">
-                    
+
                 </div>
             </div>
         </section>
@@ -847,7 +877,7 @@
                                     <label for="date">Fecha Nacimiento</label>
                                     <input type="date" class="form-control" id="date" placeholder="Ingrese su fecha de nacimiento" required>
 
-                                </div>                                
+                                </div>
                                 <div class="form-group">
                                     <label for="password">Contraseña</label>
                                     <input type="password" class="form-control" id="password" placeholder="Ingrese su contraseña" required>
@@ -880,7 +910,7 @@
                                     <label for="emailadministrativo">Correo</label>
                                     <input type="text" class="form-control" id="emailadministrativoEditar" placeholder="Ingrese su correo" required>
 
-                                </div>                                
+                                </div>
                                 <div class="form-group">
                                     <label for="password">Contraseña</label>
                                     <input type="password" class="form-control" id="passwordEditar" placeholder="Ingrese su contraseña" required>
@@ -897,7 +927,7 @@
                             </div>
                         </div>
                     </div>
-                </div>                
+                </div>
             </div>
             <div class="my-auto">
                 <div id="contenedorAdmin">
@@ -906,7 +936,8 @@
             </div>
 
             <!-- Validar Eliminar Administrativos -->
-            <div class="modal fade" id="validarEliminarAdministrativo" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal fade" id="validarEliminarAdministrativo" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+                aria-hidden="true">
                 <div class="modal-dialog" role="document">
                     <div class="modal-content">
                         <div class="modal-header">
@@ -948,16 +979,15 @@
 <script src="includes/jquery-easing/jquery.easing.min.js"></script>
 <script src="vista/js/navbar.js"></script>
 <script src="vista/js/profesores.js">
-    </script>
+</script>
 
-<script src="vista/js/profesores.js"></script>
-    <script src="vista/js/estudiante.js"></script>
-
-    <script src="vista/js/productos.js"></script>
-    <script type="text/javascript" src="vista/js/venta.js"></script>
-<script src="vista/js/profesores.js"></script>
 <script src="vista/js/estudiante.js"></script>
+
 <script src="vista/js/productos.js"></script>
+<script src="vista/js/venta.js"></script>
+
+
+
 <script src="vista/js/administrativos.js"></script>
 
 </html>

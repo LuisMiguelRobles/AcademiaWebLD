@@ -52,6 +52,11 @@ $(function () {
 
     });
 
+    $("#confirmarEliminarEstudiante").click(function(){
+        
+        confirmarEliminarEstudiante();
+
+    })
 
 
 });
@@ -152,7 +157,7 @@ function renderizar(data) {
                 <td>
                     <div class="btn-group">
                         <button class="btn btn-info" data-toggle="modal" data-target="#modalEstudiantesEditar" onclick="modalEditarEstudiante(${value.documentoestudiante})">Editar</button>
-                        <button class="btn btn-danger delete" id="delete" onclick="eliminarEstudiante(${value.documentoestudiante})">Eliminar</button>
+                        <button class="btn btn-danger delete" id="delete" data-toggle="modal" data-target="#validarEliminarEstudiante" onclick="eliminarEstudiante(${value.documentoestudiante})">Eliminar</button>
                     </div>     
                 </td>
             </tr>`;
@@ -169,15 +174,22 @@ function renderizar(data) {
  * 
  *Elimina un estudiante seleccionado mediante su documento
  */
-function eliminarEstudiante(documentoestudiante) {
 
+function eliminarEstudiante(cedulaEstudianteEliminar) {
+
+    $("#cedulaEstudianteAEliminar").html(cedulaEstudianteEliminar);
+
+}
+
+function confirmarEliminarEstudiante() {
+    let estudianteEliminar = parseInt($('#cedulaEstudianteAEliminar').text());
     $.ajax({
-        "url": urlEstudiantes,
+        "url":"controlador/fachada.php",
         "type": "POST",
         "data": {
             clase: "Estudiante",
             oper: "delete",
-            documentoestudiante: documentoestudiante
+            documentoestudiante: estudianteEliminar
         }
 
     }).done((data) => {
@@ -185,7 +197,6 @@ function eliminarEstudiante(documentoestudiante) {
         obtenerEstudiantes();
 
     });
-
 }
 
 
