@@ -6,10 +6,12 @@ $(function () {
 
     $('#addProfesor').click(function () {
         agregarDocente();
+        limpiarCamposProfesoresAgregar();
     });
 
     $('#editarProfesor').click(function () {
         editarDocente();
+        limpiarCamposProfesoresEditar();
     });
 
     $('#btnBuscarDocente').click(function(){
@@ -264,4 +266,26 @@ function buscarProfesor() {
     } else {
         alert("No se ha ingresado la cedula");
     }
+}
+
+function limpiarCamposProfesoresAgregar() {
+    cedulaprofesor : $('#cedulaProfesor').val('');
+    nombreprofesor : $('#nombreProfesor').val('');
+    apellidoprofesor : $('#apellidoProfesor').val('');
+    fechanacimiento : $('#fechaNacimientoProfesor').val('');
+    direccionprofesor : $('#direccionProfesor').val('');
+    telefonoprofesor : $('#telefonoProfesor').val('');
+    correoprofesor : $('#correoProfesor').val('');
+    profesionprofesor : $('#profesionProfesor').val('');
+}
+
+function limpiarCamposProfesoresEditar() {
+    $('#cedulaProfesorEditar').val('');
+    $('#nombreProfesorEditar').val('');
+    $('#apellidoProfesorEditar').val('');
+    $('#fechaNacimientoProfesorEditar').val('');
+    $('#direccionProfesorEditar').val('');
+    $('#telefonoProfesorEditar').val('');
+    $('#correoProfesorEditar').val('');
+    $('#profesionProfesorEditar').val('');
 }
