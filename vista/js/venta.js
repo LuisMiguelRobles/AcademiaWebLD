@@ -170,7 +170,7 @@ function agregarVentas() {
 
     }).done(function (data) {
         console.log(data);
-        obtenerEstudiantesventas();
+        obtenerClases();
     }).always((data) => {
         console.log(data);
     });
