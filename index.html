@@ -62,7 +62,6 @@
                 <h1 class="my-name col-12">Academia automovilistica lord driver</h1>
 
                 <div class="">
-
                 </div>
                 <ul class="list-inline list-social-icons mb-0">
                     <li class="list-inline-item">
@@ -120,6 +119,7 @@
                     </div>
                 </div>
             </div>
+
 
             <div class="form-group">
 
@@ -857,17 +857,21 @@
 
         <!-- SECCION ADMINISTRATIVOS -->
         <section class="resume-section p-3 p-lg-5 d-flex flex-column" id="users">
-            <div class="row">
-                <div class="col-md-9">
-                    <h2 class="mb-5 my-titles">Administrativos</h2>
-                </div>
-                <!-- Button trigger modal -->
-                <div class="col-md-3">
-                    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modalAdministrativos">
-                        Agregar
-                    </button>
-                </div>
+
+            <div class="col-md-9">
+                <h2 class="mb-5 my-titles">Administrativos</h2>
             </div>
+
+            <nav class="navbar navbar-light bg-light">
+                <div class="form-inline">
+                    <input class="form-control mr-sm-2" type="search" placeholder="Buscar por Cedula" aria-label="Search" id="buscarAdministrativo">
+                    <button class="btn btn-outline-success my-2 my-sm-0" id="btnBuscarAdminstrativos">Buscar</button>
+                </div>
+                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modalAdministrativos">
+                    Agregar
+                </button>
+            </nav>
+
 
             <div class="form-group">
                 <!-- Modal Agregar Administrativo -->
@@ -948,9 +952,15 @@
                     </div>
                 </div>
             </div>
-            <div class="my-auto">
+            <div>
                 <div id="contenedorAdmin">
 
+                </div>
+
+                <div>
+                    <button id="btnAtrasAdmin" class="btn btn-secondary">
+                        <i class="fa fa-backward"></i> Atras
+                    </button>
                 </div>
             </div>
 
@@ -998,13 +1008,12 @@
 <script src="vista/js/navbar.js"></script>
 
 <script src="vista/js/profesores.js"></script>
-
 <script src="vista/js/estudiante.js"></script>
-
 <script src="vista/js/productos.js"></script>
+<script src="vista/js/administrativos.js"></script>
 
 <script src="vista/js/venta.js"></script>
 
-<script src="vista/js/administrativos.js"></script>
+
 
 </html>

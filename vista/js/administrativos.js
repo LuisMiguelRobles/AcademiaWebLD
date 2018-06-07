@@ -12,6 +12,17 @@ $(function () {
     $("#editarAdministrativos").click(function () {
         editarAdministrativos();
     });
+
+    $("#btnBuscarAdminstrativos").click(function () {
+        obtenerAdministrativoPorCedula();       
+        $("#buscarAdministrativo").val("");
+
+    });
+
+    $("#btnAtrasAdmin").click(function () {
+        obtenerAdministrativos();
+        $("#btnAtrasAdmin").fadeOut();
+    });
     
 });
 
@@ -168,5 +179,37 @@ function editarAdministrativos() {
     });
 
 
+}
+
+
+/**
+ * Obtiene solo un estudiante y lo muestra en la tabla de estudiantes
+ */
+
+function obtenerAdministrativoPorCedula() {
+
+    $.ajax({
+
+        "url": urlAdministrativos,
+        "type": "GET",
+        "data": {
+            clase: "administrativos",
+            oper: "select1",
+            cedulaadministrativo: $("#buscarAdministrativo").val()
+
+        },
+        "dataType": "JSON"
+    }).done((data) => {
+        console.log(data);
+        if (data) {
+            administrativos = data;
+            renderizarAdministrativos(data);
+            $("#btnAtrasAdmin").fadeIn();
+        } else {
+            alert("No se encontro ningun registro");
+        }
+
+
+    });
 }
 
