@@ -1,156 +1,267 @@
 let profesores = [];
 
-let cedulaEdit;
 $(function () {
 
+    obtenerProfesores();
 
-    /**
+    $('#addProfesor').click(function () {
+        agregarDocente();
+    });
+
+    $('#editarProfesor').click(function () {
+        editarDocente();
+    });
+
+    $('#btnBuscarDocente').click(function(){
+        buscarProfesor();
+        
+    });
+
+    $('#btnAtrasProfesor').click(function(){
+        obtenerProfesores();
+        $('#btnAtrasProfesor').fadeOut();
+    })
+});
+
+/**
+ * Obtiene todos los profesores que se encuentren en la base de datos
+ */
+function obtenerProfesores() {
+     /**
      * Peticion Get al Servidor
      */
     $.ajax({
 
         "url": "controlador/fachada.php",
-        "type": "POST",
+        "type": "GET",
         "data": {
-            clase : 'Profesor',
+            clase :'Profesor',
             oper: 'select'
         },
-        "dataType": "JSON"
-
+        "dataType": "JSON",
+        "Async": "false"
 
     }).done(function (data) {
-        profesores = data;
+        
         if (data) {
+            profesores = data;
+
             console.log(data);
-            renderizar(data);
+            renderizarTablaProfesores(data);
         }
+
+    }).fail(function (error) {
+        alert("No se recibio respuesta del Servidor..." + error);
+        console.log(error);
     });
-
-    $('#add').click(function () {
-        agregar();
-        renderizar(profesores);
-    });
-
-    $('#editar').click(function () {
-        editar();
-        //limpiarCampos();
-    });
-
-});
-
-let agregar = () => {
-    let obj = {};
-    obj.nombre = $('#nombreProfesor').val();
-    obj.apellido = $('#apellidoProfesor').val();
-    obj.cedula = $('#cedulaProfesor').val();
-
-    profesores.push(obj);
 }
 
-
-function renderizar(data) {
-
+/**
+ * Llena la tabla de profesores con la cantidad de profesores 
+ * que están llegando de la base de datos
+ * 
+ * @param {profesores} data 
+ */
+function renderizarTablaProfesores(data) {
 
     let html = `<table class="table table-bordered">
-                <thead>
+                <thead class="thead-dark">
                     <tr>
+                        <th>Cedula</th>
                         <th>Nombre</th>
                         <th>Apellido</th>
-                        <th>Cedula</th>
+                        <th>Fecha de nacimiento</th>
+                        <th>Direccion</th>
+                        <th>Teléfono</th>
+                        <th>Correo</th>
+                        <th>Profesión</th>
+                        <th>Acciones</th>
                     </tr>
                 </thead>`;
 
     $.each(data, function (key, value) {
         html +=
             `<tr>
-                <td>${value.nombre}</td>
-                <td>${value.apellido}</td>
-                <td>${value.cedula}</td>
+                <td>${value.cedulaprofesor}</td>
+                <td>${value.nombreprofesor}</td>
+                <td>${value.apellidoprofesor}</td>
+                <td>${value.fechanacimiento}</td>
+                <td>${value.direccionprofesor}</td>
+                <td>${value.telefonoprofesor}</td>
+                <td>${value.correoprofesor}</td>
+                <td>${value.profesionprofesor}</td>
                 <td>
-                    <button class="btn btn-info" data-toggle="modal" data-target="#modalProfesoresEditar" onclick="llenarCamposEditar(${value.cedula})">Editar</button>
-                    <button class="btn btn-danger delete" id="delete" onclick="eliminar(${value.cedula})">Eliminar</button>
+                    <div class="btn-group">
+                        <button class="btn btn-info" data-toggle="modal" data-target="#modalProfesoresEditar" onclick="llenarCamposEditarProfesores(${value.cedulaprofesor})">Editar</button>
+                        <button class="btn btn-danger delete" id="delete" data-toggle="modal" data-target="#validarEliminarProfesor" onclick="eliminarProfesor(${value.cedulaprofesor})">Eliminar</button>
+                    </div>
                 </td>
             </tr>`;
     });
     html += `</table>`;
-    $("#render").html(html);
+    $("#tablaProfesor").html(html);
 
 }
 
-let llenarCamposEditar = (cedulaAEditar) => {
+/**
+ * Toma la informacion del modalEditarDocente y la agrega a la base de datos como un
+ * nuevo docente
+ */
+function agregarDocente()  {
+    
+    $.ajax({
 
-    cedulaEdit = cedulaAEditar;
-    for (const iterator of profesores) {
-        if (iterator.cedula == cedulaAEditar) {
-            $('#nombreProfesorEditar').val(iterator.nombre);
-            $('#apellidoProfesorEditar').val(iterator.apellido);
-            $('#cedulaProfesorEditar').val(iterator.cedula);
+        "url": "controlador/fachada.php",
+        "type": "POST",
+        "data": {
+            clase :'Profesor',
+            oper: 'add',
+            cedulaprofesor : $('#cedulaProfesor').val(),
+            nombreprofesor : $('#nombreProfesor').val(),
+            apellidoprofesor : $('#apellidoProfesor').val(),
+            fechanacimiento : $('#fechaNacimientoProfesor').val(),
+            direccionprofesor : $('#direccionProfesor').val(),
+            telefonoprofesor : $('#telefonoProfesor').val(),
+            correoprofesor : $('#correoProfesor').val(),
+            profesionprofesor : $('#profesionProfesor').val()
+        },
+        "dataType": "JSON"
+    }).done(function(data){
+
+        console.log(data);
+        obtenerProfesores();
+        
+    }).fail(function(){
+        alert("Ha ocurrido un error");
+    })
+}
+
+/**
+ * Llena el modalEditar con la informacion del profesor que 
+ * se va a modificar
+ * 
+ * @param {cedula que se va a modificar} cedulaAEditar 
+ */
+let llenarCamposEditarProfesores = (cedulaAEditar) => {
+
+    for (const profesor of profesores) {
+        if (profesor.cedulaprofesor == cedulaAEditar) {
+            $('#cedulaProfesorEditar').val(profesor.cedulaprofesor);
+            $('#nombreProfesorEditar').val(profesor.nombreprofesor);
+            $('#apellidoProfesorEditar').val(profesor.apellidoprofesor);
+            $('#fechaNacimientoProfesorEditar').val(profesor.fechanacimiento);
+            $('#direccionProfesorEditar').val(profesor.direccionprofesor);
+            $('#telefonoProfesorEditar').val(profesor.telefonoprofesor);
+            $('#correoProfesorEditar').val(profesor.correoprofesor);
+            $('#profesionProfesorEditar').val(profesor.profesionprofesor);
+
             break;
         }
     }
 }
 
-let editar = () => {
-    let obj = {};
-    obj.nombre = $('#nombreProfesorEditar').val();
-    obj.apellido = $('#apellidoProfesorEditar').val();
-    obj.cedula = $('#cedulaProfesorEditar').val();
+/**
+ * Toma los nuevos valores el modalEditar y los asigna al profesor que se 
+ * está editando
+ */
+function editarDocente() {
 
-    for (let i = 0; i < profesores.length; i++) {
-        if (profesores[i].cedula == cedulaEdit) {
-            profesores[i] = obj;
-            break;
-        }
-    }
+   $.ajax({
 
-    renderizar(profesores);
+        "url": "controlador/fachada.php",
+        "type": "POST",
+        "data": {
+            clase :'Profesor',
+            oper: 'edit',
+            nombreprofesor  : $('#nombreProfesorEditar').val(),
+            apellidoprofesor : $('#apellidoProfesorEditar').val(),
+            fechanacimiento : $('#fechaNacimientoProfesorEditar').val(),
+            direccionprofesor : $('#direccionProfesorEditar').val(),
+            telefonoprofesor : $('#telefonoProfesorEditar').val(),
+            correoprofesor : $('#correoProfesorEditar').val(),
+            profesionprofesor : $('#profesionProfesorEditar').val(),
+            cedulaprofesor : $('#cedulaProfesorEditar').val()
+        },
+        "dataType": "JSON"
+    }).done(function(data){
+
+        console.log(data);
+        obtenerProfesores();
+        
+    }).fail(function(error){
+        alert("Hay un error");
+    })
 }
 
+/**
+ * Asigna a un span invisible la cedula del profesor que se quiere eliminar
+ * 
+ * @param {cedula} cedulaProfesorEliminar 
+ */
+function eliminarProfesor(cedulaProfesorEliminar) {
 
-// function llenarCamposEditar(cedulaAEditar) {
-//     let index;
+    $("#cedulaProfesorAEliminar").html(cedulaProfesorEliminar);
 
-//     for (let value of profesores) {
-//         if (value.cedula == cedulaAEditar) {
-//             index = profesores.indexOf(value);
-//             $("#nombreProfesorEditar").val(value.nombre);
-//             $("#apellidoProfesorEditar").val(value.apellido);
-//             $("#cedulaProfesorEditar").val(value.cedula);
-//         }
-//     }
+}
 
-//     editar();
-// }
-
-// let editar = () => {
-//     let obj = {};
-
-//     obj.nombre = $('#nombreProfesorEditar').val();
-//     obj.apellido = $('#apellidoProfesorEditar').val();
-//     obj.cedula = $('#cedulaProfesorEditar').val();
-
-//     for (let i = 0; i < profesores.length; i++) {
-//         if (profesores[i].cedula == cedula) {
-//             profesores[i] = obj;
-//             break;
-//         }
-//     }
-
-//     renderizar(profesores);
-// }
-
-
-function eliminar(cedula) {
-    let index;
-
-    for (let value of profesores) {
-        if (value.cedula == cedula) {
-            index = profesores.indexOf(value);
-            profesores.splice(index, 1);
-            console.log(profesores);
-
-            renderizar(profesores);
-
+/**
+ * Confirma la eliminacion del profesor
+ */
+function confirmarEliminarProfesor() {
+    let docenteEliminar = parseInt($('#cedulaProfesorAEliminar').text());
+    $.ajax({
+        "url":"controlador/fachada.php",
+        "type": "POST",
+        "data": {
+            clase: "Profesor",
+            oper: "delete",
+            cedulaprofesor: docenteEliminar
         }
+
+    }).done((data) => {
+
+        obtenerProfesores();
+
+    });
+}
+
+/**
+ * Toma el valor de la cedula que se escribe en el input
+ * y la elimina de la base de datos
+ */
+function buscarProfesor() {
+    let buscarProfesor = $('#buscarCedulaDocente').val();
+
+    console.log(buscarProfesor);
+
+    if (buscarProfesor != '') {
+        $.ajax({
+
+            "url": "controlador/fachada.php",
+            "type": "GET",
+            "data": {
+                clase :'Profesor',
+                oper: 'select1',
+                cedulaprofesor : buscarProfesor
+            },
+            "dataType": "JSON"
+    
+        }).done(function (data) {
+            console.log(data);
+            if (data) {
+                profesores = data;
+                
+                renderizarTablaProfesores(data);
+            } else {
+                $('#tablaProfesor').html('<div class="alert alert-danger">Nada para Mostrar</div>');
+            }
+            $('#btnAtrasProfesor').fadeIn();
+    
+        }).fail(function (error) {
+            alert("No se recibio respuesta del Servidor..." + error);
+            console.log(error);
+        }); 
+    } else {
+        alert("No se ha ingresado la cedula");
     }
 }

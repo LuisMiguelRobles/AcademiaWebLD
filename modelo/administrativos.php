@@ -8,8 +8,13 @@ class administrativos {
 	 function select($param) {
         extract($param);
         $where = $conexion->getWhere($param);
+<<<<<<< HEAD
         $sql = "SELECT cedulaadministrativo, emailadministrativo, date, password
 						FROM administrativos ;";
+=======
+        $sql = 'SELECT cedulaadministrativo, emailadministrativo, date, password
+						FROM "Administrativos" ;';
+>>>>>>> 0dc98d5aa0a20bac5a13f5c77f7e3820fdb6cde9
        $rs = $conexion->getPDO()->prepare($sql);
         if ($rs->execute(array())) {
             if ($filas = $rs->fetchAll(PDO::FETCH_ASSOC)) {
@@ -27,7 +32,11 @@ class administrativos {
         extract($param);
         $where = $conexion->getWhere($param);
         $sql = "SELECT cedulaadministrativo, emailadministrativo, date, password
+<<<<<<< HEAD
 						FROM administrativos where cedulaadministrativo =? ;";
+=======
+						FROM Administrativos where cedulaadministrativo =? ;";
+>>>>>>> 0dc98d5aa0a20bac5a13f5c77f7e3820fdb6cde9
        $rs = $conexion->getPDO()->prepare($sql);
         if ($rs->execute(array($cedulaadministrativo))) {
             if ($filas = $rs->fetchAll(PDO::FETCH_ASSOC)) {

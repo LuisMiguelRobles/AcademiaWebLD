@@ -3,7 +3,7 @@
 /**
 * 
 */
-class Clase extends 
+class Clase 
 {
 	 function select($param) {
         extract($param);
@@ -49,6 +49,7 @@ class Clase extends
         $rs = $conexion->getPDO()->prepare($sql);
         $rs->execute(array($fecha, $hora, $estudiante, $profesor, $vehiculo, $producto));
         echo $conexion->getEstado();
+        
     }
 
   

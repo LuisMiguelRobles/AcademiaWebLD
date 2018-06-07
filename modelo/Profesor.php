@@ -22,7 +22,25 @@ class Profesor{
         extract($param);
         $where = $conexion->getWhere($param);
         $sql = "SELECT cedulaprofesor, nombreprofesor, apellidoprofesor, fechanacimiento, direccionprofesor, telefonoprofesor, correoprofesor, profesionprofesor
-             FROM public.profesor where = cedulaprofesor = ?;";
+             FROM public.profesor;";
+       $rs = $conexion->getPDO()->prepare($sql);
+        if ($rs->execute(array())) {
+            if ($filas = $rs->fetchAll(PDO::FETCH_ASSOC)) {
+                foreach ($filas as $fila) {
+
+                    $array[] = $fila;
+                }
+            }
+        }
+
+        echo json_encode(($array));
+    }
+
+    function select1($param) {
+        extract($param);
+        $where = $conexion->getWhere($param);
+        $sql = "SELECT cedulaprofesor, nombreprofesor, apellidoprofesor, fechanacimiento, direccionprofesor, telefonoprofesor, correoprofesor, profesionprofesor
+             FROM public.profesor where cedulaprofesor = ?;";
        $rs = $conexion->getPDO()->prepare($sql);
         if ($rs->execute(array($cedulaprofesor))) {
             if ($filas = $rs->fetchAll(PDO::FETCH_ASSOC)) {
@@ -75,14 +93,14 @@ class Profesor{
 
     */
     
-      function edit($param) {
+    function edit($param) {
         extract($param);
         $sql = "UPDATE profesor
                 SET nombreprofesor=?, apellidoprofesor=?, fechanacimiento=?, direccionprofesor=?, telefonoprofesor=?, correoprofesor=?, profesionprofesor=?
                 WHERE cedulaprofesor = ?;";   
         $rs = $conexion->getPDO()->prepare($sql);
         $rs->execute(array( $nombreprofesor, $apellidoprofesor, $fechanacimiento,
-            $direccionprofesor, $telefonoprofesor, $correoprofesor, $profesionprofesor, $cedulaprofesor,));
+            $direccionprofesor, $telefonoprofesor, $correoprofesor, $profesionprofesor, $cedulaprofesor));
         echo $conexion->getEstado();
     }
 
@@ -92,7 +110,7 @@ class Profesor{
         cedulaprofesor
  
     */
-       function delete($param) {
+    function delete($param) {
         extract($param);
         $sql = " DELETE FROM profesor
                      WHERE cedulaprofesor= ?;";   
