@@ -12,10 +12,13 @@ $(function() {
 
        $("#agrego").click(function () {
             agregarVentas();
+            limpiarCamposVentaAgregar();
+            $('#modalVentas').modal('toggle');
         });
 
        $("#editarclase").click(function () {
             editarclases();
+            $('#modaleditarVentas').modal('toggle');
         });
        $("#btnBuscarclases").click(function () {
             obtenerClasesId();
@@ -177,6 +180,7 @@ function agregarVentas() {
 
 
 }
+
 function obtenerClases() {
 
     $.ajax({
@@ -266,6 +270,15 @@ let confirmarEliminarclases = ()=>
     }).always((data) => {
         console.log(data);
     });
+}
+
+function limpiarCamposVentaAgregar() {
+    
+    $('#horarios').val('');
+    $('##seleccionarEstudiante').val('');
+    $('#seleccionarProfesor').val('');
+    $('#seleccionarVehiculo').val('');
+    $('#seleccionarProductoventas').val('');
 }
 
 let modalEditarclase = (id) =>

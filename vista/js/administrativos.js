@@ -7,10 +7,14 @@ $(function () {
 
     $("#agregarAdministrativos").click(function () {
         agregarAdministrativos();
+        limpiarCamposAdministrativosAgregar();
+        $('#modalAdministrativos').modal('toggle'); //Cierra el modal despues de agregar
+        
     });
 
     $("#editarAdministrativos").click(function () {
         editarAdministrativos();
+        $('#modalAdministrativosEditar').modal('toggle');
     });
 
     $("#btnBuscarAdminstrativos").click(function () {
@@ -139,6 +143,16 @@ let confirmarEliminarAdministrativo = () => {
     });
 
 }
+
+function limpiarCamposAdministrativosAgregar() {
+
+    $('#cedulaadministrativo').val('');
+    $('#emailadministrativo').val('');
+    $('#date').val('');
+    $('#password').val('');
+}
+
+
 /**
 *edita los datos que ya han sido ingresados
  */
@@ -154,7 +168,6 @@ function modalEditarAdministrativos(id) {
         }
     }
 }
-
 
 function editarAdministrativos() {
 
@@ -180,7 +193,6 @@ function editarAdministrativos() {
 
 
 }
-
 
 /**
  * Obtiene solo un estudiante y lo muestra en la tabla de estudiantes
