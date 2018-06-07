@@ -23,6 +23,9 @@ $(function () {
     })
 });
 
+/**
+ * Obtiene todos los profesores que se encuentren en la base de datos
+ */
 function obtenerProfesores() {
      /**
      * Peticion Get al Servidor
@@ -53,8 +56,13 @@ function obtenerProfesores() {
     });
 }
 
+/**
+ * Llena la tabla de profesores con la cantidad de profesores 
+ * que están llegando de la base de datos
+ * 
+ * @param {profesores} data 
+ */
 function renderizarTablaProfesores(data) {
-
 
     let html = `<table class="table table-bordered">
                 <thead class="thead-dark">
@@ -95,6 +103,10 @@ function renderizarTablaProfesores(data) {
 
 }
 
+/**
+ * Toma la informacion del modalEditarDocente y la agrega a la base de datos como un
+ * nuevo docente
+ */
 function agregarDocente()  {
     
     $.ajax({
@@ -124,6 +136,12 @@ function agregarDocente()  {
     })
 }
 
+/**
+ * Llena el modalEditar con la informacion del profesor que 
+ * se va a modificar
+ * 
+ * @param {cedula que se va a modificar} cedulaAEditar 
+ */
 let llenarCamposEditarProfesores = (cedulaAEditar) => {
 
     for (const profesor of profesores) {
@@ -142,6 +160,10 @@ let llenarCamposEditarProfesores = (cedulaAEditar) => {
     }
 }
 
+/**
+ * Toma los nuevos valores el modalEditar y los asigna al profesor que se 
+ * está editando
+ */
 function editarDocente() {
 
    $.ajax({
@@ -171,14 +193,21 @@ function editarDocente() {
     })
 }
 
-
+/**
+ * Asigna a un span invisible la cedula del profesor que se quiere eliminar
+ * 
+ * @param {cedula} cedulaProfesorEliminar 
+ */
 function eliminarProfesor(cedulaProfesorEliminar) {
 
     $("#cedulaProfesorAEliminar").html(cedulaProfesorEliminar);
 
 }
 
-function confirmarEliminarProfesor(params) {
+/**
+ * Confirma la eliminacion del profesor
+ */
+function confirmarEliminarProfesor() {
     let docenteEliminar = parseInt($('#cedulaProfesorAEliminar').text());
     $.ajax({
         "url":"controlador/fachada.php",
@@ -196,6 +225,10 @@ function confirmarEliminarProfesor(params) {
     });
 }
 
+/**
+ * Toma el valor de la cedula que se escribe en el input
+ * y la elimina de la base de datos
+ */
 function buscarProfesor() {
     let buscarProfesor = $('#buscarCedulaDocente').val();
 
