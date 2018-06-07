@@ -1,21 +1,21 @@
 let clases =[];
 $(function() {
-    	let estudiantes = [];
-    	let profesores = [];
-    	let vehiculos = [];
-      let productos = [];
-    	obtenerEstudiantes();
-    	obtenerProfesores();
-    	obtenerVehiculos();
-      obtenerProductosventas();
-      obtenerClases();
+    	let estudiantesventas = [];
+    	let profesoresventas = [];
+    	let vehiculosventas = [];
+        let productosventas = [];
+    	obtenerEstudiantesventas();
+    	obtenerProfesoresventas();
+    	obtenerVehiculosventas();
+        obtenerProductosventas();
+        obtenerClases();
 
        $("#agrego").click(function () {
         agregarVentas();
     })
 });
 
-function obtenerEstudiantes() {
+function obtenerEstudiantesventas() {
 
     $.ajax({
         "url": "controlador/fachada.php",
@@ -30,8 +30,8 @@ function obtenerEstudiantes() {
     	let html ="";
         if (data) {
             console.log(data);
-            estudiantes = data;
-           	for (estudiante of estudiantes){
+            estudiantesventas = data;
+           	for (estudiante of estudiantesventas){
            		html = html + " <option value ="+estudiante.documentoestudiante+">"+estudiante.nombreestudiante +"</option>"
 
            	}
@@ -45,7 +45,7 @@ function obtenerEstudiantes() {
     });
 
 }
-function obtenerProfesores() {
+function obtenerProfesoresventas() {
 
     $.ajax({
         "url": "controlador/fachada.php",
@@ -60,8 +60,8 @@ function obtenerProfesores() {
     	let html ="";
         if (data) {
             console.log(data);
-            profesores = data;
-           	for (profesor of profesores){
+            profesoresventas = data;
+           	for (profesor of profesoresventas){
            		html = html + " <option value ="+profesor.cedulaprofesor+">"+profesor.nombreprofesor +"</option>"
 
            	}
@@ -75,7 +75,7 @@ function obtenerProfesores() {
     });
 
 }
-function obtenerVehiculos() {
+function obtenerVehiculosventas() {
 
     $.ajax({
         "url": "controlador/fachada.php",
@@ -90,8 +90,8 @@ function obtenerVehiculos() {
     	let html ="";
         if (data) {
             console.log(data);
-            vehiculos = data;
-           	for (vehiculo of vehiculos){
+            vehiculosventas = data;
+           	for (vehiculo of vehiculosventas){
            		html = html + " <option value ="+vehiculo.idvehiculo+">"+vehiculo.placa +" " + vehiculo.modelo+"</option>"
 
            	}
@@ -120,8 +120,8 @@ function obtenerProductosventas() {
       let html ="";
         if (data) {
             console.log(data);
-            productos = data;
-            for (producto of productos){
+            productosventas = data;
+            for (producto of productosventas){
               html = html + " <option value ="+producto.idproducto+">"+producto.nombreproducto +" " + producto.categoriaproducto+"</option>"
 
             }
@@ -154,7 +154,7 @@ function agregarVentas() {
 
     }).done(function (data) {
         console.log(data);
-        obtenerEstudiantes();
+        obtenerEstudiantesventas();
     }).always((data) => {
         console.log(data);
     });
