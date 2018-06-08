@@ -1,8 +1,13 @@
 let profesores = [];
+let emailRegex = /^(([^<>()[\]\.,;:\s@\"]+(\.[^<>()[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i;
 
 $(function () {
 
     obtenerProfesores();
+
+    // $("#btnAgregarDocente").click(function(){
+    //     verificarEmail();
+    // });
 
     $('#addProfesor').click(function () {
         agregarDocente();
@@ -105,37 +110,58 @@ function renderizarTablaProfesores(data) {
 
 }
 
+let calcularEdadDocente = (fecha) => {
+    if (fecha != "") {
+        let date = fecha.split();
+        let annio = "";
+        for (let i = 0; i < 4; i++) {
+            annio += date[i];
+        }
+        let data = parseInt(annio);
+        let edad = 2018 - data;
+
+        return edad >= 18;
+    }
+};
+
 /**
  * Toma la informacion del modalEditarDocente y la agrega a la base de datos como un
  * nuevo docente
  */
 function agregarDocente()  {
+
+    let correoDocenteVerificar = $('#correoProfesor').val();
+    let fechaNacimientoProfesorVerificar = $('#fechaNacimientoProfesor').val();
+
+    if (emailRegex.test(correoDocenteVerificar) && calcularEdadDocente(fechaNacimientoProfesorVerificar)) {
+        $.ajax({
+
+            "url": "controlador/fachada.php",
+            "type": "POST",
+            "data": {
+                clase :'Profesor',
+                oper: 'add',
+                cedulaprofesor : $('#cedulaProfesor').val(),
+                nombreprofesor : $('#nombreProfesor').val(),
+                apellidoprofesor : $('#apellidoProfesor').val(),
+                fechanacimiento : $('#fechaNacimientoProfesor').val(),
+                direccionprofesor : $('#direccionProfesor').val(),
+                telefonoprofesor : $('#telefonoProfesor').val(),
+                correoprofesor : $('#correoProfesor').val(),
+                profesionprofesor : $('#profesionProfesor').val()
+            },
+            "dataType": "JSON"
+        }).done(function(data){
     
-    $.ajax({
-
-        "url": "controlador/fachada.php",
-        "type": "POST",
-        "data": {
-            clase :'Profesor',
-            oper: 'add',
-            cedulaprofesor : $('#cedulaProfesor').val(),
-            nombreprofesor : $('#nombreProfesor').val(),
-            apellidoprofesor : $('#apellidoProfesor').val(),
-            fechanacimiento : $('#fechaNacimientoProfesor').val(),
-            direccionprofesor : $('#direccionProfesor').val(),
-            telefonoprofesor : $('#telefonoProfesor').val(),
-            correoprofesor : $('#correoProfesor').val(),
-            profesionprofesor : $('#profesionProfesor').val()
-        },
-        "dataType": "JSON"
-    }).done(function(data){
-
-        console.log(data);
-        obtenerProfesores();
-        
-    }).fail(function(){
-        alert("Ha ocurrido un error");
-    })
+            console.log(data);
+            obtenerProfesores();
+            
+        }).fail(function(){
+            alert("Ha ocurrido un error");
+        })
+    } else {
+        alert("Puede que el correo no esté correcto o que el profesor no sea menor de 18 años ...");
+    }
 }
 
 /**
@@ -168,31 +194,39 @@ let llenarCamposEditarProfesores = (cedulaAEditar) => {
  */
 function editarDocente() {
 
-   $.ajax({
+    let correoDocenteVerificar = $('#correoProfesorEditar').val();
+    let fechaNacimientoProfesorVerificar = $('#fechaNacimientoProfesorEditar').val();
 
-        "url": "controlador/fachada.php",
-        "type": "POST",
-        "data": {
-            clase :'Profesor',
-            oper: 'edit',
-            nombreprofesor  : $('#nombreProfesorEditar').val(),
-            apellidoprofesor : $('#apellidoProfesorEditar').val(),
-            fechanacimiento : $('#fechaNacimientoProfesorEditar').val(),
-            direccionprofesor : $('#direccionProfesorEditar').val(),
-            telefonoprofesor : $('#telefonoProfesorEditar').val(),
-            correoprofesor : $('#correoProfesorEditar').val(),
-            profesionprofesor : $('#profesionProfesorEditar').val(),
-            cedulaprofesor : $('#cedulaProfesorEditar').val()
-        },
-        "dataType": "JSON"
-    }).done(function(data){
+    if (emailRegex.test(correoDocenteVerificar) && calcularEdadDocente(fechaNacimientoProfesorVerificar)) {
+        $.ajax({
 
-        console.log(data);
-        obtenerProfesores();
-        
-    }).fail(function(error){
-        alert("Hay un error");
-    })
+            "url": "controlador/fachada.php",
+            "type": "POST",
+            "data": {
+                clase :'Profesor',
+                oper: 'edit',
+                nombreprofesor  : $('#nombreProfesorEditar').val(),
+                apellidoprofesor : $('#apellidoProfesorEditar').val(),
+                fechanacimiento : $('#fechaNacimientoProfesorEditar').val(),
+                direccionprofesor : $('#direccionProfesorEditar').val(),
+                telefonoprofesor : $('#telefonoProfesorEditar').val(),
+                correoprofesor : $('#correoProfesorEditar').val(),
+                profesionprofesor : $('#profesionProfesorEditar').val(),
+                cedulaprofesor : $('#cedulaProfesorEditar').val()
+            },
+            "dataType": "JSON"
+        }).done(function(data){
+
+            console.log(data);
+            obtenerProfesores();
+            
+        }).fail(function(error){
+            alert("Hay un error");
+        });
+
+    } else {
+        alert("Puede que el correo no esté correcto o que el profesor no sea menor de 18 años ...");
+    }
 }
 
 /**
